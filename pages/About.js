@@ -1,14 +1,11 @@
 import Parents from "@/components/Parents"
 
-export default function About() {
+export default function Aboutus() {
     return (
         <>
             
             <Parents>
-                <div className="h-full">
-                    <h1>hhhhh</h1>
-                </div>
-
+                
 
 
             </Parents>
