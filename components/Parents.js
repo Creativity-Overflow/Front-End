@@ -1,6 +1,6 @@
 import Header from "./Header"
 import Head from "next/head"
-
+import Footer from "./Footer"
 export default function Parents(props) {
     return (
         <>
@@ -10,7 +10,7 @@ export default function Parents(props) {
             <Header />
 
             {props.children}
-
+            <Footer />
 
         </>
     )
