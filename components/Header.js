@@ -9,9 +9,11 @@ export default function Header() {
         {/* <a href="signup" className="px-4 py-2 text-white bg-blue-400 rounded-md">Sign out</a> */}
         <Link href="/" className="px-4 py-2 text-white bg-blue-400 rounded-md">Home</Link>
         <Link href="/About" className="px-4 py-2 text-white bg-blue-400 rounded-md">About Us</Link>
+        <Link href="/login" className="px-4 py-2 text-white bg-blue-400 rounded-md">login</Link>
       </div>
 
     </header>
+    
     
   );
 };

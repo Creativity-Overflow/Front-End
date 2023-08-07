@@ -9,11 +9,8 @@ export default function Home() {
 
       
       <Parents>
-        <h1>gggggggggggg</h1>
-
-
-
-
+       
+       
       </Parents>
     </>
   );
