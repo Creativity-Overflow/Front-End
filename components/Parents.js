@@ -4,11 +4,11 @@ import Footer from "./Footer"
 export default function Parents(props) {
     return (
         <>
+
             <Head>
                 <title>Creativity overflow</title>
             </Head>
             <Header />
-
             {props.children}
             <Footer />
 
