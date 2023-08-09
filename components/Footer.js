@@ -127,7 +127,10 @@ function Footer() {
               <p className="flex flex-col justify-center items-center text-center  p-5bg-blue-400">
                 © 2022-2023 All rights reserved | Build with ❤ by{" "}
                 <span className="hover:text-blue-600 font-semibold cursor-pointer">
+                  <a href="/About">
+
                   Group-5{" "}
+                  </a>
                 </span>
               </p>
             </div>
@@ -138,14 +141,17 @@ function Footer() {
                 </p>
               <ul className="flex flex-row " >
                 <li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer m-1">
-                  LTUC
+                  <a href="https://www.ltuc.com/">
+
+                  LTUC DIGITS ASAC
+                  </a>
                 </li>
-                <li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer  m-1">
+                {/* <li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer  m-1">
                   DIGITS
                 </li>
                 <li className="text-gray-500 text-md pb-2 font-semibold hover:text-blue-600 cursor-pointer  m-1">
                   ASAC
-                </li>
+                </li> */}
               </ul>
             </div>
           </div>

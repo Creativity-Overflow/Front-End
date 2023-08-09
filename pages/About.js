@@ -8,6 +8,8 @@ export default function Aboutus() {
     return (
         <>
             <Parents>
+
+                
                 <div class="bg-white dark:bg-gray-900 relative">
                     <div class="flex justify-center h-screen">
                         <div class="h-screen w-screen hidden bg-cover lg:block">
@@ -155,6 +157,12 @@ export default function Aboutus() {
                         </li>
                     </ul>
                 </div>
+                {/* <div class="container">
+    <i class="fa fa-apple" id="apple"></i>
+    <i class="fa fa-twitter" id="twitter"></i>
+    <i class="fa fa-github-square github" id="github"></i>
+    <i class="fa fa-facebook-square" id="facebook"></i>
+  </div> */}
                 <div class="parent2">
                     {/* mohammed */}
                     <ul>
