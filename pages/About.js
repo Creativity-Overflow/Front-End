@@ -1,48 +1,19 @@
-import Parents from "@/components/Parents";
-import Header from "@/components/Header";
-import Head from "next/head";
-// import Image from "next/image"
-// import "../public/css"
+import Parents from "@/components/Parents"
+import Slider3d from "@/components/Slider3d"
+import ReversedSlider from "@/components/ReversedSlider"
+import PersonalCard from "@/components/PersonalCards"
+import CategorySlider from "@/components/CategorySlider"
 
-export default function Aboutus() {
+
+export default function About() {
+
     return (
         <>
+
             <Parents>
-                <div class="bg-white dark:bg-gray-900 relative">
-                    <div class="flex justify-center h-screen">
-                        <div class="h-screen w-screen hidden bg-cover lg:block">
-                            <img
-                                src="https://netart.commons.gc.cuny.edu/wp-content/blogs.dir/3087/files/2018/10/Conversation.gif"
-                                alt="Full-Screen Image"
-                                class="h-full w-full object-cover"
-                            />
-                        </div>
-                     
 
-                        <div class="flex justify-center items-center h-screen px-20 absolute top-50 left-50 ">
-                           <div class=" bg-black bg-opacity-30 px-20 ">
+                
 
-
-                                <h2 class="text-2xl font-bold text-white sm:text-3xl mt-5">
-                                    Creativity Overflow
-                                </h2>
-
-
-                                <p class="max-w-xl mt-3 text-white text-xl mb-5  ">
-                                    Welcome to our vibrant online community! We are thrilled to
-                                    have you here. Whether you're an aspiring enthusiast, a
-                                    seasoned expert, or simply curious about our offerings, we
-                                    extend our warmest greetings. Explore our diverse range of
-                                    resources, engage in meaningful discussions, and embark on a
-                                    journey of learning and growth together. Join us as we create,
-                                    innovate, and connect in this exciting world of endless
-                                    possibilities. Let's build something incredible together!
-                                </p>
-                           </div>
-                            
-                        </div>
-                    </div>
-                </div>
 
 
 
@@ -265,6 +236,7 @@ export default function Aboutus() {
                     </ul>
                 </div>
             </Parents>
+
         </>
     );
 }
