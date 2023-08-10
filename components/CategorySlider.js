@@ -20,22 +20,22 @@ export default function CategorySlider() {
     const cardData = [
         
         {
-            backgroundImage: "url('https://64.media.tumblr.com/d761053b39282282173cf080d132658c/tumblr_oe0g2u21KG1relaado1_400.gif')",
+            backgroundImage: "url('https://media1.giphy.com/media/TdQoJS1atKEulCW5Lg/giphy.gif?cid=ecf05e47mc7pzr3q56f6lsep5c037pao13elgl9ekz2ytg89&ep=v1_gifs_search&rid=giphy.gif&ct=g')",
             title: "To The Beach",
             copy: "Plan your next beach trip with these fabulous destinations",
         },
         {
-            backgroundImage: "url('https://64.media.tumblr.com/d761053b39282282173cf080d132658c/tumblr_oe0g2u21KG1relaado1_400.gif')",
+            backgroundImage: "url('https://media2.giphy.com/media/P5B1MmOvBvx1m6vetp/giphy.gif?cid=ecf05e47t1ore3syvncsnendau69tn1bovor5lo21woueg07&ep=v1_gifs_related&rid=giphy.gif&ct=g')",
             title: "To The Beach",
             copy: "Plan your next beach trip with these fabulous destinations",
         },
         {
-            backgroundImage: "url('https://64.media.tumblr.com/d761053b39282282173cf080d132658c/tumblr_oe0g2u21KG1relaado1_400.gif')",
+            backgroundImage: "url('https://media4.giphy.com/media/mRgQiKMnKL8WZeogKl/giphy.gif?cid=ecf05e47t222701ko3edmjyajkfbmln2t9mjz58l6v36qi8e&ep=v1_gifs_related&rid=giphy.gif&ct=g')",
             title: "To The Beach",
             copy: "Plan your next beach trip with these fabulous destinations",
         },
         {
-            backgroundImage: "url('https://64.media.tumblr.com/d761053b39282282173cf080d132658c/tumblr_oe0g2u21KG1relaado1_400.gif')",
+            backgroundImage: "url('https://media0.giphy.com/media/eIm7RckrEHz1y5KyNo/giphy.gif?cid=ecf05e47804o84pqtz8xirt6ia3xbgevl376py3pafyet4bf&ep=v1_gifs_related&rid=giphy.gif&ct=g')",
             title: "To The Beach",
             copy: "Plan your next beach trip with these fabulous destinations",
         },

@@ -5,9 +5,9 @@ import Aboutus from "@/components/About";
 export default function About() {
     return (
         <>
-                <Parents>
+                
                 <Aboutus />
-                </Parents>
+                
         </>
     );
 }

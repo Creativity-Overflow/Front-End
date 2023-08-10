@@ -8,8 +8,11 @@ export function useResource(){
     const get_art_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
     const get_inventory_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
     const {tokens,logout} = useAuth()
-    const {data,error} = useSWR([get_art_url,tokens],getArtResource)
+    const {data,error} = useSWR([get_art_url , tokens],getArtResource)
     const {inven,invenError} = useSWR([get_inventory_url,tokens],getInventory)
+    const [art , setArt] = useState([])
+    const [inventory , setInventory] = useState([])
+
     function getArtResource(){
         if(!tokens){
             return "no tokens";
@@ -17,13 +20,15 @@ export function useResource(){
         try{
             axios.get(get_art_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
             .then(response =>{
-                console.log(response)
-                return response.data
+                console.log(response.data)
+                setArt(response.data)
+                
             }).catch(error=>handleError(error))
         }
         catch{
             console.log("Error: something went wrong")
         }
+        // return data
     }
     function handleError(error){
         logout()
@@ -37,8 +42,9 @@ export function useResource(){
         try{
             axios.get(get_inventory_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
             .then(response =>{
-                console.log(response)
-                return response.data
+                // console.log(response)
+                setInventory(response.data)
+            
             }).catch(error=>handleError(error))
         }
         catch{
@@ -46,8 +52,9 @@ export function useResource(){
         }
     }
     return{
-        getArts : data ,
+
+        getArts : art ,
         loading : tokens && !error && !data ,
-        getInvontry: inven
+        getInvontry: inventory
     }
 }

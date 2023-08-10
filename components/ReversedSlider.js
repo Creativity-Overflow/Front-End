@@ -12,19 +12,19 @@ export default function ReversedSlider() {
                 <div className="animate-marquee flex min-w-full shrink-0 items-center justify-around gap-10">
                     {/* First set of images */}
                     <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/s86WhGhp25Y" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/NoRsyXmHGpI" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/uEFombN3J5U" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/MyVH8UVJDBE" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/IoINVPQe738" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/NoRsyXmHGpI" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/uEFombN3J5U" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/MyVH8UVJDBE" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/IoINVPQe738" alt="" />
                 </div>
 
                 <div aria-hidden="true" className="animate-marquee flex min-w-full shrink-0 items-center justify-around gap-10">
                     {/* Duplicate of first set of images for seamless loop */}
                     <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/s86WhGhp25Y" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UZe35tk5UoA" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/7-xmprXdiAk" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/PV9QQFDB5W8" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/TSYQ5stQVjg" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UZe35tk5UoA" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/7-xmprXdiAk" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/PV9QQFDB5W8" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/TSYQ5stQVjg" alt="" />
                 </div>
             </div>
             <p style={{ "align-self": "center" , "fontSize": "25px"}}>Step into a realm of inspiration. Our art gallery is a sanctuary where the ordinary transforms into the extraordinary.</p>
@@ -32,18 +32,18 @@ export default function ReversedSlider() {
                 <div className="animate-marquee flex min-w-full shrink-0 items-center justify-around gap-10 animate-marquee-reverse">
                     {/* Reversed set of images */}
                     <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UOavP_Z38lE" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UZe35tk5UoA" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/7-xmprXdiAk" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/PV9QQFDB5W8" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/TSYQ5stQVjg" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UZe35tk5UoA" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/7-xmprXdiAk" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/PV9QQFDB5W8" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/TSYQ5stQVjg" alt="" />
                 </div>
                 <div aria-hidden="true" className="animate-marquee flex min-w-full shrink-0 items-center justify-around gap-10 animate-marquee-reverse">
                     {/* Duplicate of reversed set of images for seamless loop */}
                     <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UOavP_Z38lE" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UZe35tk5UoA" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/7-xmprXdiAk" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/PV9QQFDB5W8" alt="" />
-                    <img class="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/TSYQ5stQVjg" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/UZe35tk5UoA" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/7-xmprXdiAk" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/PV9QQFDB5W8" alt="" />
+                    <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/TSYQ5stQVjg" alt="" />
                 </div>
             </div>
         </div>
