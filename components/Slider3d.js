@@ -153,32 +153,32 @@ export default function Slider3d() {
                     >
 
                         <img className='image3d'
-                            src="https://images.pexels.com/photos/206395/pexels-photo-206395.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            src="https://i.pinimg.com/564x/d0/4b/08/d04b08a454655c5bad69b4a98008b1ee.jpg"
                             alt=""
 
                         />
                         <img className='image3d'
-                            src="https://images.pexels.com/photos/1391498/pexels-photo-1391498.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            src="https://i.pinimg.com/564x/05/49/92/054992ee906aecdb12256c78e34875dc.jpg"
                             alt=""
 
                         />
                         <img className='image3d'
-                            src="https://images.pexels.com/photos/1382731/pexels-photo-1382731.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            src="https://i.pinimg.com/564x/eb/62/aa/eb62aa9025d32cb054f0ce6c20651422.jpg"
                             alt=""
 
                         />
                         <img className='image3d'
-                            src="https://images.pexels.com/photos/1758144/pexels-photo-1758144.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            src="https://i.pinimg.com/564x/02/42/eb/0242eb1ea1d59e42c6812f3e9f887e02.jpg"
                             alt=""
 
                         />
                         <img className='image3d'
-                            src="https://images.pexels.com/photos/1382734/pexels-photo-1382734.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            src="https://i.pinimg.com/564x/28/76/53/2876533599b7cefd228c103a56dbd3e2.jpg"
                             alt=""
 
                         />
                         <img className='image3d'
-                            src="https://images.pexels.com/photos/1462636/pexels-photo-1462636.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                            src="https://mpost.io/wp-content/uploads/image-74-7.jpg"
                             alt=""
                         />
 

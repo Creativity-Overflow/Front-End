@@ -1,26 +1,33 @@
 import Parents from "@/components/Parents";
 import Image from "next/image";
 import Link from "next/link"; // Import the Link component
+import React, { useState } from "react";
+// import { useAuth } from "@/contexts/auth";
 
 export default function login() {
+  // const [email, setEmail] = useState("");
+  // const [password, setPassword] = useState("");
+  // const { login, username, logout } = useAuth();
+
+
   return (
     <>
-      <div class="bg-white dark:bg-gray-900">
-        <div class="flex justify-center h-screen">
+      <div className="bg-white dark:bg-gray-900">
+        <div className="flex justify-center h-screen">
           <div
-            class="hidden bg-cover lg:block lg:w-2/3"
+            className="hidden bg-cover lg:block lg:w-2/3"
             style={{
               "background-image":
                 "url(https://media.giphy.com/media/Iw8fHoP37Xi36/giphy.gif)",
             }}
           >
-            <div class="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
+            <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
               <div>
-                <h2 class="text-2xl font-bold text-white sm:text-3xl">
+                <h2 className="text-2xl font-bold text-white sm:text-3xl">
                   Creativity Overflow
                 </h2>
 
-                <p class="max-w-xl mt-3 text-gray-300">
+                <p className="max-w-xl mt-3 text-gray-300">
                   Welcome to the world of creativity and beauty! Our website
                   is your perfect destination to explore art in all its forms
                   and colors. We offer a diverse collection of unique artworks
@@ -38,25 +45,25 @@ export default function login() {
             </div>
           </div>
 
-          <div class="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
-            <div class="flex-1">
-              <div class="text-center">
-              <div class="flex justify-center mx-auto">
-  <img class="w-auto h-7 sm:h-8" src="public/images/image.png" alt="logo" />
+          <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+            <div className="flex-1">
+              <div className="text-center">
+              <div className="flex justify-center mx-auto">
+  <img className="w-auto h-7 sm:h-8" src="/images/image.png" alt="logo" />
 </div>
 
 
-                <p class="mt-3 text-gray-500 dark:text-gray-300">
+                <p className="mt-3 text-gray-500 dark:text-gray-300">
                   Sign in to access your account
                 </p>
               </div>
 
-              <div class="mt-8">
+              <div className="mt-8">
                 <form>
                   <div>
                     <label
                       for="email"
-                      class="block mb-2 text-sm text-gray-600 dark:text-gray-200"
+                      className="block mb-2 text-sm text-gray-600 dark:text-gray-200"
                     >
                       Email Address
                     </label>
@@ -65,21 +72,21 @@ export default function login() {
                       name="email"
                       id="email"
                       placeholder="example@example.com"
-                      class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
-                  <div class="mt-6">
-                    <div class="flex justify-between mb-2">
+                  <div className="mt-6">
+                    <div className="flex justify-between mb-2">
                       <label
                         for="password"
-                        class="text-sm text-gray-600 dark:text-gray-200"
+                        className="text-sm text-gray-600 dark:text-gray-200"
                       >
                         Password
                       </label>
                       <a
                         href="#"
-                        class="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline"
+                        className="text-sm text-gray-400 focus:text-blue-500 hover:text-blue-500 hover:underline"
                       >
                         Forgot password?
                       </a>
@@ -90,21 +97,21 @@ export default function login() {
                       name="password"
                       id="password"
                       placeholder="Your Password"
-                      class="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
                     />
                   </div>
 
-                  <div class="mt-6">
-                    <button class="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                  <div className="mt-6">
+                    <button  className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50" >
                       Sign in
                     </button>
                   </div>
                 </form>
 
-                <p class="mt-6 text-sm text-center text-gray-400">
+                <p className="mt-6 text-sm text-center text-gray-400">
                   Don't have an account yet?{" "}
                   <Link href="/signup" passHref legacyBehavior>
-                    <a class="text-blue-500 focus:outline-none focus:underline hover:underline">
+                    <a className="text-blue-500 focus:outline-none focus:underline hover:underline">
                       Sign up
                     </a>
                   </Link>

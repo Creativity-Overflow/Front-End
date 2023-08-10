@@ -25,7 +25,7 @@ export function AuthProvider(props){
     })
 
     useEffect(() => {
-        console.log("state", state.username);
+        // console.log("state", state.username);
       }, [state.username]);
 
     function login(username,password){
@@ -37,16 +37,16 @@ export function AuthProvider(props){
         axios.post(baseUrl+'api/token/',body)
         .then(response =>{
             let token=response.data.access
-            console.log(token)
+            // console.log(token)
             const decoded= jwt.decode(token)
-            console.log(decoded)
+            // console.log(decoded)
             const newState={
                 tokens:response.data,
                 username: decoded.username,
                 email:decoded.email,
                 user_id:decoded.user_id
             }
-            console.log("newState"+newState.username)
+            // console.log("newState"+newState.username)
             setState((prevState) => ({
                 ...prevState,
                 tokens: response.data,

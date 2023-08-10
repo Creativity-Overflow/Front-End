@@ -5,9 +5,9 @@ import Image from "next/image";
 export default function loginpage() {
   return (
     <>
-      <Parents>
+      
        <Login />
-      </Parents>
+      
     </>
   );
 }

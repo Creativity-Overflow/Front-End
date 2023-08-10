@@ -8,9 +8,7 @@ export default function Parents(props) {
             <Head>
                 <title>Creativity overflow</title>
             </Head>
-            <Header />
-            {props.children}
-            <Footer />
+            
 
         </>
     )
