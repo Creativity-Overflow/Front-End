@@ -1,7 +1,68 @@
-import Image from "next/image";
+import { useState } from "react";
+import axios from "axios";
 import Link from "next/link";
 
 export default function SignUp() {
+  const [formData, setFormData] = useState({
+    username: "",
+    email: "",
+    password1: "",
+    password2: "",
+    profilePicture: null,
+    isArtist: false,
+  });
+
+  const [fieldErrors, setFieldErrors] = useState({
+    username: false,
+    email: false,
+    password1: false,
+    password2: false,
+  });
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setFormData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+  };
+
+  const handleImageUpload = (event) => {
+    const file = event.target.files[0];
+    setFormData((prevData) => ({
+      ...prevData,
+      profilePicture: file,
+    }));
+  };
+
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    const newFieldErrors = {};
+    for (const field in formData) {
+      if (formData[field] === "") {
+        newFieldErrors[field] = true;
+      }
+    }
+    setFieldErrors(newFieldErrors);
+
+    if (formData.password1 !== formData.password2) {
+      alert("Passwords do not match.");
+      return;
+    }
+
+    if (Object.keys(newFieldErrors).length === 0) {
+      try {
+        const response = await axios.post("/signup/", formData);
+        console.log("Signup successful:", response.data);
+        // Handle successful signup (e.g., show a success message, redirect, etc.)
+      } catch (error) {
+        console.error("Signup error:", error.response.data);
+        // Handle signup error (e.g., show an error message)
+      }
+    }
+  };
+
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
@@ -48,7 +109,7 @@ export default function SignUp() {
                   </Link>
                 </div>
                 <div className="flex justify-center mx-auto">
-                  <img className="w-auto h-7 sm:h-8" src="public/images/image.png" alt="logo"/>
+                  <img className="w-auto h-7 sm:h-8" src="public/images/image.png" alt="logo" />
                 </div>
 
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
@@ -57,7 +118,7 @@ export default function SignUp() {
               </div>
 
               <div className="mt-8">
-                <form>
+                <form onSubmit={handleSubmit}>
                   <div>
                     <label
                       htmlFor="username"
@@ -70,8 +131,21 @@ export default function SignUp() {
                       name="username"
                       id="username"
                       placeholder="Your Username"
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
+                        fieldErrors.username
+                          ? "border-red-500"
+                          : "border-gray-200"
+                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
+                        fieldErrors.username
+                          ? "dark:border-red-500"
+                          : "dark:border-gray-700"
+                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                      value={formData.username}
+                      onChange={handleInputChange}
                     />
+                    {fieldErrors.username && (
+                      <p className="text-red-500 text-sm mt-1">Username is required.</p>
+                    )}
                   </div>
 
                   <div>
@@ -86,28 +160,94 @@ export default function SignUp() {
                       name="email"
                       id="email"
                       placeholder="example@example.com"
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
+                        fieldErrors.email ? "border-red-500" : "border-gray-200"
+                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
+                        fieldErrors.email ? "dark:border-red-500" : "dark:border-gray-700"
+                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                      value={formData.email}
+                      onChange={handleInputChange}
                     />
+                    {fieldErrors.email && (
+                      <p className="text-red-500 text-sm mt-1">Email is required.</p>
+                    )}
                   </div>
 
                   <div>
                     <label
-                      htmlFor="password"
+                      htmlFor="password1"
                       className="block mt-4 mb-2 text-sm text-gray-600 dark:text-gray-200"
                     >
                       Password
                     </label>
                     <input
                       type="password"
-                      name="password"
-                      id="password"
+                      name="password1"
+                      id="password1"
                       placeholder="Your Password"
-                      className="block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border border-gray-200 rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 dark:border-gray-700 focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40"
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
+                        fieldErrors.password1 ? "border-red-500" : "border-gray-200"
+                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
+                        fieldErrors.password1 ? "dark:border-red-500" : "dark:border-gray-700"
+                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                      value={formData.password1}
+                      onChange={handleInputChange}
+                    />
+                    {fieldErrors.password1 && (
+                      <p className="text-red-500 text-sm mt-1">Password is required.</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="password2"
+                      className="block mt-4 mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >
+                      Confirm Password
+                    </label>
+                    <input
+                      type="password"
+                      name="password2"
+                      id="password2"
+                      placeholder="Confirm Password"
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
+                        fieldErrors.password2 ? "border-red-500" : "border-gray-200"
+                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
+                        fieldErrors.password2 ? "dark:border-red-500" : "dark:border-gray-700"
+                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                      value={formData.password2}
+                      onChange={handleInputChange}
+                    />
+                    {fieldErrors.password2 && (
+                      <p className="text-red-500 text-sm mt-1">Password confirmation is required.</p>
+                    )}
+                    {formData.password1 !== formData.password2 && (
+                      <p className="text-red-500 text-sm mt-1">Passwords do not match.</p>
+                    )}
+                  </div>
+
+                  <div>
+                    <label
+                      htmlFor="profilePicture"
+                      className="block mt-4 mb-2 text-sm text-gray-600 dark:text-gray-200"
+                    >
+                      Profile Picture
+                    </label>
+                    <input
+                      type="file"
+                      accept="image/*"
+                      name="profilePicture"
+                      id="profilePicture"
+                      onChange={handleImageUpload}
+                      className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
                     />
                   </div>
 
                   <div className="mt-6">
-                    <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                    <button
+                      type="submit"
+                      className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
+                    >
                       Sign up
                     </button>
                   </div>
