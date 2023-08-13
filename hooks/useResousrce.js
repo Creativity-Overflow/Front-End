@@ -1,5 +1,4 @@
 import axios from "axios" ;
-import { headers } from "next/dist/client/components/headers" ;
 import { useAuth } from "@/contexts/auth" ;
 import { useState } from "react" ;
 import useSWR from 'swr' ;
@@ -10,12 +9,17 @@ export function useResource(){
     const get_digital_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/digital/"
     const get_art_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
     const get_inventory_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
+
     const get_physical_arts_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/physical/"
     const get_digital_arts_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/digital/"
     const get_photos_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/photos/"
+
+    const get_artist_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/artist-art/"
+
     const {tokens,logout} = useAuth()
     const {data,error} = useSWR([get_art_url],getArtResource)
     const {inven,invenError} = useSWR([get_inventory_url,tokens],getInventory)
+
     const {physical,physError}= useSWR([get_physical_arts_url],getPhysical)
     const {photography,photError}= useSWR([get_photography_url],getPhotography)
     const {digitalArt,digiError}= useSWR([get_digital_art_url],getDigitalArt)
@@ -24,6 +28,12 @@ export function useResource(){
     const [physArt , setPhysArt] = useState([])
     const [photos , setPhotos] = useState([])
     const [digital , setDigital] = useState([])
+
+    const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
+    const [art , setArt] = useState([])
+    const [inventory , setInventory] = useState([])
+    const [ArtistArt , setArtistArt] = useState([])
+
 
     function getArtResource(){
         // if(!tokens){
@@ -63,6 +73,7 @@ export function useResource(){
             console.log("Error: something went wrong")
         }
     }
+
     /////////////////////physical arts////////////////////
     function getPhysical(){
         axios.get(get_physical_arts_url)
@@ -97,14 +108,36 @@ export function useResource(){
         })
     }
     ///////////////////////////////////////////////////////////
+
+    function getArtistArt(){
+        if(!tokens){
+            return "no tokens";
+        }
+        try{
+            axios.get(get_artist_art_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
+            .then(response =>{
+                // console.log(response)
+                setArtistArt(response.data)
+            
+            }).catch(error=>handleError(error))
+        }
+        catch{
+            console.log("Error: something went wrong")
+        }
+    }
+
     return{
 
         getArts : art ,
         loading : tokens && !error && !data ,
         getInvontry: inventory,
+
         physicalArts : physArt,
         phyloading: physArt && !physError,
         digitalArt : digital,
         photography: photos,
+
+        getArtsArtist: ArtistArt,
+
     }
 }
