@@ -4,76 +4,78 @@ import axios from "axios";
 import jwt from "jsonwebtoken";
 import { useEffect } from "react";
 
-const AuthContext=createContext();
+const AuthContext = createContext();
 
-export function useAuth(){
-    const auth = useContext(AuthContext)
-    if(!auth){
-        return ("Error: auth is empty");
-    }
-    return auth;
+export function useAuth() {
+  const auth = useContext(AuthContext);
+  if (!auth) {
+    return "Error: auth is empty";
+  }
+  return auth;
 }
 
-export function AuthProvider(props){
-    
-    const [state,setState] = useState({
-        username:null,
-        email:null,
-        user_id:null,
-        login,
-        logout,
-    })
+export function AuthProvider(props) {
+  const initialClientState = JSON.parse(
+    typeof window !== "undefined" && localStorage.getItem("authState")
+  ) || {
+    username: null,
+    email: null,
+    user_id: null,
+    tokens: null,
+  };
 
-    useEffect(() => {
-        // console.log("state", state.username);
-      }, [state.username]);
+  const [state, setState] = useState(initialClientState);
 
-    function login(username,password){
-        const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
-        const body ={
-            "username":username,
-            "password":password
-        }
-        axios.post(baseUrl+'api/token/',body)
-        .then(response =>{
-            let token=response.data.access
-            // console.log(token)
-            const decoded= jwt.decode(token)
-            // console.log(decoded)
-            const newState={
-                tokens:response.data,
-                username: decoded.username,
-                email:decoded.email,
-                user_id:decoded.user_id
-            }
-            // console.log("newState"+newState.username)
-            setState((prevState) => ({
-                ...prevState,
-                tokens: response.data,
-                username: decoded.username,
-                email: decoded.email,
-                user_id: decoded.user_id,
-              }));
-        }).catch(error => {
-            console.error(error);
-          }
-
-        )
+  useEffect(() => {
+    // Save the state to local storage whenever it changes
+    if (typeof window !== "undefined") {
+      localStorage.setItem("authState", JSON.stringify(state));
     }
+  }, [state]);
 
-    function logout(){
+  function login(username, password) {
+    const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+    const body = {
+      username: username,
+      password: password,
+    };
+    axios
+      .post(baseUrl + "api/token/", body)
+      .then((response) => {
+        let token = response.data.access;
+        // console.log(token)
+        const decoded = jwt.decode(token);
+        // console.log(decoded)
+        const newState = {
+          tokens: response.data,
+          username: decoded.username,
+          email: decoded.email,
+          user_id: decoded.user_id,
+        };
+        // console.log("newState"+newState.username)
         setState((prevState) => ({
-            ...prevState,
-            tokens: null,
-            username: null,
-            email: null,
-            user_id: null,
-          }));
-    }
+          ...prevState,
+          ...newState
+        }));
+      })
+      .catch((error) => {
+        console.error(error);
+      });
+  }
 
-    return(
-        <AuthContext.Provider value={state}>
-            {props.children}
-        </AuthContext.Provider>
-    )
+  function logout() {
+    setState((prevState) => ({
+      ...prevState,
+      tokens: null,
+      username: null,
+      email: null,
+      user_id: null,
+    }));
+  }
+
+  return (
+    <AuthContext.Provider value={{ ...state, login, logout }}>
+      {props.children}
+    </AuthContext.Provider>
+  );
 }
