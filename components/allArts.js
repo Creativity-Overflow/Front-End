@@ -1,5 +1,6 @@
 import React from 'react';
 import { useResource } from '@/hooks/useResousrce';
+import ArtModal from './artModal';
 export default function AllArts() {
     const { getArts,loading } = useResource();
     if (loading) {
@@ -16,7 +17,11 @@ export default function AllArts() {
               <p>{card.category}</p>
               <p>{card.highest_bidder_name} {card.current_price}</p>
               <p>{card.artist_name}</p>
-              <button className="btn">bid</button>
+              <button className="btn" 
+            >Place your bid</button>
+            {/* <ArtModal showFlag={showFlag}
+            handleClose={handleClose}
+            item={itemData} /> */}
             </div>
           </div>
         </div>

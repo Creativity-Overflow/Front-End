@@ -72,9 +72,23 @@ export function AuthProvider(props) {
       user_id: null,
     }));
   }
-
+//////////////////////////////sign up //////////////////////////
+function signup_customer(info) {
+  console.log(info)
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  axios.post(`${baseUrl}accounts/signup/`,info)
+  .then((response)=>console.log(response.status))
+}
+/////////////////////////////sign up artist /////////////////
+function signup_artist(info) {
+  console.log(info)
+  const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
+  axios.post(`${baseUrl}accounts/artist_signup/`,info)
+  .then((response)=>console.log(response.status))
+}
+//////////////////////////////////////////////////////////
   return (
-    <AuthContext.Provider value={{ ...state, login, logout }}>
+    <AuthContext.Provider value={{ ...state, login, logout,signup_customer,signup_artist, }}>
       {props.children}
     </AuthContext.Provider>
   );
