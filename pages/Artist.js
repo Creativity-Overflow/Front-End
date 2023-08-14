@@ -1,3 +1,4 @@
+
 import Image from "next/image";
 import Artist from "@/components/Artist";
 import ArtTabs from "@/components/Category";

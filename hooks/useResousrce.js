@@ -140,6 +140,7 @@ export function useResource(){
             console.log("Error: something went wrong")
         }
     }
+
     function getsoldArtistArt(){
         if(!tokens){
             return "no tokens";
@@ -188,6 +189,7 @@ export function useResource(){
             console.log("Error: something went wrong")
         }
     }
+
     return{
 
         getArts : art ,
