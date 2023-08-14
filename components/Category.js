@@ -1,6 +1,10 @@
 import React, { useState } from "react";
 import Inventory from "./Inventory";
 import ArtistArt from "./ArtistArt";
+import soldArtistArt from "./SoldArtistArt";
+import Customerbid from "./Customerbid";
+import WonBids from "./WonBids";
+
 
 const categories = ["Inventory", "ArtistArt", "Sold", "On going bid", "Winner"];
 
@@ -29,6 +33,9 @@ const CategoryList = () => {
       </div>
       {selectedCategory === "Inventory" && <Inventory />}
       {selectedCategory === "ArtistArt" && <ArtistArt />}
+      {selectedCategory === "Sold" && <soldArtistArt />}
+      {selectedCategory === "On going bid" && <Customerbid />}
+      {selectedCategory === "Winner" && <WonBids />}
     </div>
   );
 };

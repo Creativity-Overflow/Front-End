@@ -2,6 +2,7 @@
 import Slider3d from "@/components/Slider3d"
 import ReversedSlider from "@/components/ReversedSlider"
 import CategorySlider from "@/components/CategorySlider"
+
 import { useResource } from "@/hooks/useResousrce";
 import { useAuth } from "../contexts/auth";
 import { ArtTabs } from "@/components/ArtTabs";

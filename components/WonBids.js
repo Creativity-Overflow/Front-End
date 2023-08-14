@@ -2,7 +2,7 @@ import { useResource } from "@/hooks/useResousrce";
 import React, { useState} from "react";
 
 // import Modal from "./Modal";
-export default function ArtistArt() {
+export default function WonBids() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
 
@@ -14,13 +14,13 @@ export default function ArtistArt() {
     setModalOpen(true);
     setitemModel(item);
   };
-  const { getSoldArtistArt } = useResource();
+  const { WonBid } = useResource();
   return (
     <>
    
       <main className="page-content">
       <div className="flex gap-7">
-          {getSoldArtistArt.map((item) => (
+          {WonBid.map((item) => (
             <>
               <div
                 className="card"

@@ -1,20 +1,21 @@
+
 import Image from "next/image";
+
 import Link from "next/link"; // Import the Link component
-import React, { useState } from "react";
+import React from "react";
 import { useRouter } from "next/router";
 import { useAuth } from "@/contexts/auth";
 
 export default function loginIn() {
-  const { login,username} = useAuth();
+  const { login,tokens} = useAuth();
   const router = useRouter();
   function LoginHandler(event) {
     event.preventDefault();
-    const user_name =event.target.username.value
-    const user_password =event.target.password.value
-    login(user_name,user_password)
+    const user_name = event.target.username.value;
+    const user_password = event.target.password.value;
+    login(user_name, user_password);
     router.push("/Artist");
-    }
-
+  }
 
   return (
     <>
@@ -34,18 +35,17 @@ export default function loginIn() {
                 </h2>
 
                 <p className="max-w-xl mt-3 text-gray-300">
-                  Welcome to the world of creativity and beauty! Our website
-                  is your perfect destination to explore art in all its forms
-                  and colors. We offer a diverse collection of unique artworks
-                  and paintings that embody the talents and skills of our
-                  talented artists, Whether you're looking for art pieces to
-                  decorate your home or a special gift for a loved one, we
-                  provide you with a wonderful array of options We look
-                  forward to helping you find pieces that cater to your
-                  refined taste and inspire you to continue your artistic
-                  journey, creating with brilliance. Thank you for your trust
-                  in us, and we are eager to serve you and enrich your life
-                  with the beauty of art."
+                  Welcome to the world of creativity and beauty! Our website is
+                  your perfect destination to explore art in all its forms and
+                  colors. We offer a diverse collection of unique artworks and
+                  paintings that embody the talents and skills of our talented
+                  artists, Whether you're looking for art pieces to decorate
+                  your home or a special gift for a loved one, we provide you
+                  with a wonderful array of options We look forward to helping
+                  you find pieces that cater to your refined taste and inspire
+                  you to continue your artistic journey, creating with
+                  brilliance. Thank you for your trust in us, and we are eager
+                  to serve you and enrich your life with the beauty of art."
                 </p>
               </div>
             </div>
@@ -54,10 +54,13 @@ export default function loginIn() {
           <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
             <div className="flex-1">
               <div className="text-center">
-              <div className="flex justify-center mx-auto">
-  <img className="w-auto h-7 sm:h-8" src="/images/image.png" alt="logo" />
-</div>
-
+                <div className="flex justify-center mx-auto">
+                  <img
+                    className="w-auto h-7 sm:h-8"
+                    src="/images/image.png"
+                    alt="logo"
+                  />
+                </div>
 
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
                   Sign in to access your account
@@ -102,8 +105,7 @@ export default function loginIn() {
                   </div>
 
                   <div className="mt-6">
-                    
-                    <button  className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
+                    <button className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50">
                       Sign in
                     </button>
                   </div>
