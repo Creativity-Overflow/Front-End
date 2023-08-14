@@ -18,35 +18,23 @@ export default function ArtistArt() {
   return (
     <>
       {/* <main className="page-content"> */}
-        <div className="flex flex-row flex-wrap justify-around w-full rounded ">
-          {getArtsArtist.map((item) => (
-            <>
-              <div
-                className="card"
-                style={{
-                  backgroundImage: `url('${item.image}')`,
-                  backgroundSize: "contain",
-                  width: "30%",
-                  
-                }}
-              >
-                <div className="image"></div>
-                <div className="content">
-                  <h2 className="title">{item.name}</h2>
-                  <p className="copy">{item.description}</p>
-                  <h3 className="title">{item.category}</h3>
-                  <button
-                    className="btn"
-                    onClick={() => {
-                      openModal(item);
-                    }}
-                  >
-                    View Item
-                  </button>
-                </div>
-              </div>
-            </>
-          ))}
+      <div className="flex flex-row flex-wrap justify-around w-full rounded">
+       {getArtsArtist.map((card, index) => (
+        <div key={index} className="w-1/5 h-full m-2">
+          <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%",width:"90%"}}>
+            <div className="image"></div>
+            <div className="content">
+              <h2 className="title">{card.name}</h2>
+              <p>{card.category}</p>
+              <p>{card.highest_bidder_name} {card.current_price}</p>
+              <p>{card.artist_name}</p>
+              <button className="btn" onClick={() => openModal(card)}>
+                Place your bid
+              </button>
+            </div>
+          </div>
+        </div>
+      ))}
         </div>
         {isModalOpen && (
           <div

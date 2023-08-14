@@ -8,6 +8,7 @@ export function useResource(){
     const get_photography_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/photos/"
     const get_digital_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/digital/"
     const get_art_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
+    const update_price_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
     const get_inventory_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
 
     const get_physical_arts_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/physical/"
@@ -23,6 +24,7 @@ export function useResource(){
     const {physical,physError}= useSWR([get_physical_arts_url],getPhysical)
     const {photography,photError}= useSWR([get_photography_url],getPhotography)
     const {digitalArt,digiError}= useSWR([get_digital_art_url],getDigitalArt)
+    const {updatepricee,updteError}= useSWR([update_price_url],updatePrice)
     const get_sold_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/sold-artist-art/"
     const get_customer_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/customer-bidds/"
     const get_win_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/won-bids/"
@@ -44,6 +46,7 @@ export function useResource(){
     const [physArt , setPhysArt] = useState([])
     const [photos , setPhotos] = useState([])
     const [digital , setDigital] = useState([])
+    const [updateprice , setUpdateprice] = useState([])
 
     // const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
     const [ArtistArt , setArtistArt] = useState([])
@@ -189,6 +192,27 @@ export function useResource(){
             console.log("Error: something went wrong")
         }
     }
+    ///////////////////////update price/////////////
+    function updatePrice(item, newPrice) {
+        if (!tokens) {
+            return "no tokens";
+        }
+        try {
+            const updatePriceUrl = update_price_url+`${item.id}/`;
+            axios.put(updatePriceUrl, { current_price: newPrice }, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+                    // Update the art item with the new price
+                    const updatedArt = art.map(artItem => artItem.id === item.id ? { ...artItem, current_price: newPrice } : artItem);
+                    setArt(updatedArt);
+                    // Update the winnerbid state or any other necessary state
+                    setUpdateprice(response.data);
+                })
+                .catch(error => handleError(error));
+        } catch {
+            console.log("Error: something went wrong");
+        }
+    }
+    
 
     return{
 
@@ -205,5 +229,7 @@ export function useResource(){
         getSoldArtistArt: soldArtistArt,
         CustomerBid: customerBid,
         WonBid: winnerbid,
+
+        putPrice:updateprice,
     }
 }

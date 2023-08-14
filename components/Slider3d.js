@@ -1,4 +1,4 @@
-import { colors } from '@nextui-org/react';
+
 import React, { useState, useEffect } from 'react';
 // import "@/components/slider.css"
 
