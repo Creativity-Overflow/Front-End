@@ -4,7 +4,7 @@ export default function Card3d() {
     return (
         <main className="page-content">
             {/* Card 1 */}
-            <div className={"card"} style={{ backgroundImage: `url('https://media.tenor.com/QtEfzowhyzEAAAAC/universe-galaxy.gif')` , backgroundSize: "cover"}}>
+            <div className={"card"} style={{ backgroundImage: `url('https://media.tenor.com/QtEfzowhyzEAAAAC/universe-galaxy.gif')` , backgroundSize: "cover" , height: "450px", width: "350px" }}>
                 <div className="image" ></div>
                 <div className="content">
                     <h2 className="title">Mountain View</h2>

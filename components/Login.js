@@ -1,4 +1,3 @@
-import Parents from "@/components/Parents";
 import Image from "next/image";
 import Link from "next/link"; // Import the Link component
 import React, { useState } from "react";
