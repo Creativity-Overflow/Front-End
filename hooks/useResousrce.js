@@ -51,7 +51,6 @@ export function useResource(){
         // return data
     }
     function handleError(error){
-        logout()
         console.log(error)
     }
 
@@ -123,7 +122,6 @@ export function useResource(){
             console.log("Error: something went wrong")
         }
     }
-
     return{
 
         getArts : art ,

@@ -1,3 +1,4 @@
+import { colors } from '@nextui-org/react';
 import React, { useState, useEffect } from 'react';
 // import "@/components/slider.css"
 
@@ -140,10 +141,10 @@ export default function Slider3d() {
 
     }, []);
     return (
-        <div className='all3d'>
+        <div className='all3d '>
             <div className='strin3d '>
-                <h1 style={{ fontSize: '40px' }}>Welcome to Creativity Overflow </h1>
-                <h2 style={{ fontSize: '25px' }}>Where your Creativity is Unlimited </h2>
+                <h1 className='' style={{ fontSize: '40px', color: "snow" }}>Welcome to Creativity Overflow </h1>
+                <h2 style={{ fontSize: '25px', color: "snow" }}>Where your Creativity is Unlimited </h2>
             </div>
             <div className="threeD mt-52">
                 <div id="drag-container">
@@ -204,8 +205,4 @@ export default function Slider3d() {
         </div>
     );
 }
-
-
-
-
 
