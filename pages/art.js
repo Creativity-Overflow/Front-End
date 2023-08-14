@@ -1,4 +1,4 @@
-import Parents from "@/components/Parents";
+
 import React, { useState } from "react";
 import AllArts from "@/components/allArts";
 import PhysicalArts from "@/components/physicalArts";

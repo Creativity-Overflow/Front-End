@@ -42,13 +42,11 @@ export default function Home() {
         <div style={{ "height": "90vh" }}>
           <Slider3d />
         </div>
-        <hr
-          class="my-10 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
+       
         <div className="border-r-8">
           <ArtTabs />
         </div>
-        <hr
-          class="my-10 h-0.5 border-t-0 bg-neutral-100 opacity-100 dark:opacity-50" />
+     
         <div className="min-h-screen">
           <WallArts />
         </div>
