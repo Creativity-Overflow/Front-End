@@ -55,7 +55,10 @@ export function AuthProvider(props) {
         // console.log("newState"+newState.username)
         setState((prevState) => ({
           ...prevState,
-          ...newState
+          tokens: response.data,
+          username: decoded.username,
+          email: decoded.email,
+          user_id: decoded.user_id,
         }));
       })
       .catch((error) => {
@@ -70,7 +73,9 @@ export function AuthProvider(props) {
       username: null,
       email: null,
       user_id: null,
+      
     }));
+    localStorage.clear()
   }
 //////////////////////////////sign up //////////////////////////
 function signup_customer(info) {

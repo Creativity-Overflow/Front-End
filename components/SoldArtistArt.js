@@ -14,12 +14,13 @@ export default function ArtistArt() {
     setModalOpen(true);
     setitemModel(item);
   };
-  const { getSoldArt } = useResource();
+  const { getSoldArtistArt } = useResource();
   return (
     <>
+   
       <main className="page-content">
       <div className="flex gap-7">
-          {getSoldArt.map((item) => (
+          {getSoldArtistArt.map((item) => (
             <>
               <div
                 className="card"
@@ -32,7 +33,6 @@ export default function ArtistArt() {
                 <div className="image"></div>
                 <div className="content">
                   <h2 className="title">{item.name}</h2>
-                  <p className="copy">{item.description}</p>
                   <h3 className="title">{item.category}</h3>
                   <button
                     className="btn"

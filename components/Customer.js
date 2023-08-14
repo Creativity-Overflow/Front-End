@@ -21,4 +21,3 @@ export default function Customer () {
   );
 };
 
-// export default UserProfile;

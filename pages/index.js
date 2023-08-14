@@ -1,4 +1,3 @@
-import Parents from "@/components/Parents";
 import Slider3d from "@/components/Slider3d";
 import ReversedSlider from "@/components/ReversedSlider";
 import PersonalCard from "@/components/PersonalCards";
