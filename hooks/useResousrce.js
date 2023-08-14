@@ -30,8 +30,6 @@ export function useResource(){
     const [digital , setDigital] = useState([])
 
     const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
-    const [art , setArt] = useState([])
-    const [inventory , setInventory] = useState([])
     const [ArtistArt , setArtistArt] = useState([])
 
 

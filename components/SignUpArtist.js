@@ -1,8 +1,10 @@
 import { useState } from "react";
 import axios from "axios";
 import Link from "next/link";
+import { useAuth } from "@/contexts/auth";
 
 export default function SignUpArtist() {
+  const {signup_artist} = useAuth()
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -37,7 +39,13 @@ export default function SignUpArtist() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    const body=await {
+      username:event.target.username.value,
+      email:event.target.email.value,
+      password1:event.target.password1.value,
+      password2:event.target.password2.value,
+    }
+    console.log(body)
     const newFieldErrors = {};
     for (const field in formData) {
       if (formData[field] === "") {
@@ -45,24 +53,13 @@ export default function SignUpArtist() {
       }
     }
     setFieldErrors(newFieldErrors);
-
+    
+    signup_artist(body)
     if (formData.password1 !== formData.password2) {
       alert("Passwords do not match.");
       return;
     }
-
-    if (Object.keys(newFieldErrors).length === 0) {
-      try {
-        const response = await axios.post("/artist_signup/", formData);
-        console.log("Signup successful:", response.data);
-        // Handle successful signup (e.g., show a success message, redirect, etc.)
-      } catch (error) {
-        console.error("Signup error:", error.response.data);
-        // Handle signup error (e.g., show an error message)
-      }
-    }
-  };
-
+  }
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
@@ -144,7 +141,7 @@ export default function SignUpArtist() {
                       onChange={handleInputChange}
                     />
                     {fieldErrors.username && (
-                      <p className="text-red-500 text-sm mt-1">Username is required.</p>
+                      <p className="mt-1 text-sm text-red-500">Username is required.</p>
                     )}
                   </div>
 
@@ -169,7 +166,7 @@ export default function SignUpArtist() {
                       onChange={handleInputChange}
                     />
                     {fieldErrors.email && (
-                      <p className="text-red-500 text-sm mt-1">Email is required.</p>
+                      <p className="mt-1 text-sm text-red-500">Email is required.</p>
                     )}
                   </div>
 
@@ -194,7 +191,7 @@ export default function SignUpArtist() {
                       onChange={handleInputChange}
                     />
                     {fieldErrors.password1 && (
-                      <p className="text-red-500 text-sm mt-1">Password is required.</p>
+                      <p className="mt-1 text-sm text-red-500">Password is required.</p>
                     )}
                   </div>
 
@@ -219,10 +216,10 @@ export default function SignUpArtist() {
                       onChange={handleInputChange}
                     />
                     {fieldErrors.password2 && (
-                      <p className="text-red-500 text-sm mt-1">Password confirmation is required.</p>
+                      <p className="mt-1 text-sm text-red-500">Password confirmation is required.</p>
                     )}
                     {formData.password1 !== formData.password2 && (
-                      <p className="text-red-500 text-sm mt-1">Passwords do not match.</p>
+                      <p className="mt-1 text-sm text-red-500">Passwords do not match.</p>
                     )}
                   </div>
 
