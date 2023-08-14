@@ -28,6 +28,9 @@ export default function Header() {
           <Link href="/" className="mr-5 font-medium hover:text-gray-900">
             Home
           </Link>
+          <Link href="/art" className="mr-5 font-medium hover:text-gray-900">
+            Art
+          </Link>
           <Link href="/About" className="mr-5 font-medium hover:text-gray-900">
             About Us
           </Link>
