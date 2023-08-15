@@ -1,5 +1,4 @@
 import { useAuth } from "@/contexts/auth";
-import ButtonArt from "./ButtonArt";
 export default function ArtistProfile ()  {
     const {username,email} = useAuth();
     return (
