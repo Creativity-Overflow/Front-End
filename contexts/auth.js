@@ -6,6 +6,7 @@ import { useEffect } from "react";
 
 const AuthContext = createContext();
 
+
 export function useAuth() {
   const auth = useContext(AuthContext);
   if (!auth) {
@@ -25,6 +26,7 @@ export function AuthProvider(props) {
   };
 
   const [state, setState] = useState(initialClientState);
+
 
   useEffect(() => {
     // Save the state to local storage whenever it changes
@@ -91,9 +93,11 @@ function signup_artist(info) {
   axios.post(`${baseUrl}accounts/artist_signup/`,info)
   .then((response)=>console.log(response.status))
 }
+
+
 //////////////////////////////////////////////////////////
   return (
-    <AuthContext.Provider value={{ ...state, login, logout,signup_customer,signup_artist, }}>
+    <AuthContext.Provider value={{ ...state, login, logout,signup_customer,signup_artist,}}>
       {props.children}
     </AuthContext.Provider>
   );

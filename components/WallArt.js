@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function WallArts() {
     return (
         <section className=" dark:text-gray-100 " style={{

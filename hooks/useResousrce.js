@@ -33,9 +33,7 @@ export function useResource(){
     const {bid,bidError} = useSWR([get_customer_bid_url,tokens],getCusomerbid)
     // won bidds for artist 
     const {won,wonError} = useSWR([get_win_bid_url,tokens],getWonBid)
-
     const {addart,addartError} = useSWR([post_artist_art_url ,tokens],AddArt)
-
     const [art , setArt] = useState([])
     const [inventory , setInventory] = useState([])
     const [physArt , setPhysArt] = useState([])
@@ -49,21 +47,22 @@ export function useResource(){
     const [soldArtistArt , setsoldArtistArt] = useState([])
     const [customerBid , setcustomerBid] = useState([])
     const [winnerbid , setwinnerbid] = useState([])
-
     const [AddArts , setAddArts] = useState([])
 
-
-    function getArtResource(){
+    async function getArtResource(){
         if(!tokens){
             return "no tokens";
         }
         try{
-            axios.get(get_art_url)
-            .then(response =>{
-                console.log(response.data)
-                setArt(response.data)
+
+            const res = await axios.get(get_art_url)
+            return res.data
+            // axios.get(get_art_url)
+            // .then(response =>{
+            //     setArt(response.data)
+            //     return response.data
                 
-            }).catch(error=>handleError(error))
+            // }).catch(error=>handleError(error))
         }
         catch{
             console.log("Error: something went wrong")
@@ -192,17 +191,13 @@ export function useResource(){
     }
     ///////////////////////update price/////////////
     function updatePrice(item, newPrice) {
-
         // if (!tokens) {
         //     return "no tokens";
         // }
-
-
         try {
             const updatePriceUrl = update_price_url+`${item.id}/`;
             axios.put(updatePriceUrl, { current_price: newPrice }, { headers: { Authorization: `Bearer ${tokens.access}` } })
                 .then(response => {
-
                     return response.data
                 })
                 .catch(error => handleError(error));
@@ -228,7 +223,6 @@ export function useResource(){
         }
     }
       
-
     
 
     return{
@@ -243,10 +237,9 @@ export function useResource(){
         getSoldArtistArt: soldArtistArt,
         CustomerBid: customerBid,
         WonBid: winnerbid,
-
         loading : tokens && !error && !data ,
         updatePrice,
         AddArt,
-
+        getArtResource,
     }
 }

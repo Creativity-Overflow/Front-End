@@ -1,13 +1,14 @@
-
 import { useAuth } from "@/contexts/auth";
-
 import { useResource } from "@/hooks/useResousrce";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 // import Modal from "./Modal";
 export default function AllArts() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
+  const [magic, setMagic] = useState(true);
+  
+  // const{updatePrice}=useAuth()
 
   const [newPrice, setNewPrice] = useState("");
   // const{updatePrice}=useAuth()
@@ -21,19 +22,32 @@ export default function AllArts() {
     setModalOpen(true);
     setitemModel(item);
   };
+  const {updatePrice,getArtResource} = useResource();
 
-  const { getArts, loading,updatePrice} = useResource();
+  const [newart,setNewArt]=useState(undefined)
+
   const handleSubmit = async (item) => {
-    // event.preventDefault();
-    // const newPrice=event.target.newprice.value;
-    updatePrice(item,newPrice)
+    await updatePrice(item,newPrice)
     modalClose();
+   const x= await getArtResource()
+   setNewArt(x)
+   setMagic(!magic)
   };
+  useEffect(()=>{
+    async function amjad(){
+    const x= await getArtResource()
+   setNewArt(x)
+    }
+    amjad()
 
+  },[magic,setMagic])
   return (
+
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
-        {getArts.map((card, index) => (
+        {!newart?<h1>loading..</h1>:<>
+        
+        {newart.map((card, index) => (
           <div key={index} className="w-1/5 h-full m-2">
             <div
               className={"card"}
@@ -50,7 +64,7 @@ export default function AllArts() {
                 <p>{card.category}</p>
 
                 <p>
-                  {card.highest_bidder_name} {card.current_price}
+                   {card.current_price}
                 </p>
                 <p>{card.artist_name}</p>
                 <button className="btn" onClick={() => openModal(card)}>
@@ -60,6 +74,7 @@ export default function AllArts() {
             </div>
           </div>
         ))}
+        </>}
         {isModalOpen && (
           <div
             className="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster mt-34"
@@ -82,8 +97,6 @@ export default function AllArts() {
                       {itemModel.name}
                     </h2>
                   </div>
-
-
                   <div>
                     <h3 className="title">
                       Category:{"  "}
@@ -98,12 +111,10 @@ export default function AllArts() {
                     <input
                       type="number"
                       placeholder="Enter bid amount"
-
                       value={newPrice}
                       onChange={(e)=>setNewPrice(e.target.value)}
                       // name="newprice"
                       // onChange={()=>}
-
                     />
                   </div>
                 </div>
@@ -114,9 +125,7 @@ export default function AllArts() {
                   >
                     Cancel
                   </button>
-
                   <button onClick={()=>handleSubmit(itemModel)} className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
-
                     Update
                   </button>
                 </div>
