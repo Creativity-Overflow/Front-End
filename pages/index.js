@@ -3,7 +3,6 @@ import Slider3d from "@/components/Slider3d"
 import ReversedSlider from "@/components/ReversedSlider"
 import CategorySlider from "@/components/CategorySlider"
 
-import { useResource } from "@/hooks/useResousrce";
 import { useAuth } from "../contexts/auth";
 import { ArtTabs } from "@/components/ArtTabs";
 import WallArts from "@/components/WallArt";
@@ -16,23 +15,6 @@ import PanalCat from "@/components/PanalCat";
 
 
 export default function Home() {
-
-
-  const { getArts } = useResource()
-  console.log(getArts)
-
-
-
-  const physical = getArts.filter((item) => item.category === 'physical_art')
-  const digital = getArts.filter((item) => item.category === 'digital_art')
-  const photography = getArts.filter((item) => item.category === 'photography')
-  // const photography = getArts.filter((item)=> item.category === 'photography').slice(0,10)
-
-
-
-  function test() {
-    console.log(getArts)
-  }
   return (
     <>
 
