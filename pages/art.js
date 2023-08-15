@@ -6,14 +6,16 @@ import DigitalArts from "@/components/digital";
 import Photography from "@/components/photography";
 
 export default function Art() {
+  const categories = ["AllsArts", "digitalArts", "Photography", "physicalArt"];
   const [showComponent, setShowComponent] = useState("");
 
-  const handleClick = (category) => {
-    setShowComponent(category);
+  const handleCategoryClick = (category) => {
+    setShowComponent(category === showComponent ? null : category);
   };
   return (
     <>
       <div className="flex flex-col items-center m-4">
+
 
         <div className="flex mt-4 gap-10">
           <button className=" relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group" style={{ "width": "180px", "align-self": "center" }} onClick={() => handleClick("AllsArts")}>
@@ -75,6 +77,7 @@ export default function Art() {
           </button>
         </div>
       </div>
+
       {showComponent === "Photography" ? (
         <Photography />
       ) : showComponent === "digitalArts" ? (

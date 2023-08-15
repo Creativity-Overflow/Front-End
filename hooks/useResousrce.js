@@ -9,7 +9,9 @@ export function useResource(){
     const get_art_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
     const update_price_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
     const get_inventory_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
+
     const post_artist_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/"
+
     const get_artist_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/artist-art/"
     const get_sold_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/sold-artist-art/"
     const get_customer_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/customer-bidds/"
@@ -22,6 +24,8 @@ export function useResource(){
     const {photography,photError}= useSWR([get_photography_url],getPhotography)
     const {digitalArt,digiError}= useSWR([get_digital_art_url],getDigitalArt)
     const {updatepricee,updteError}= useSWR([update_price_url],updatePrice)
+
+
     const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
     // get the art sold for the artist
     const {sold,soldError} = useSWR([get_sold_art_url,tokens],getsoldArtistArt)
@@ -29,19 +33,25 @@ export function useResource(){
     const {bid,bidError} = useSWR([get_customer_bid_url,tokens],getCusomerbid)
     // won bidds for artist 
     const {won,wonError} = useSWR([get_win_bid_url,tokens],getWonBid)
+
     const {addart,addartError} = useSWR([post_artist_art_url ,tokens],AddArt)
+
     const [art , setArt] = useState([])
     const [inventory , setInventory] = useState([])
     const [physArt , setPhysArt] = useState([])
     const [photos , setPhotos] = useState([])
     const [digital , setDigital] = useState([])
+
     // const [updateprice , setUpdateprice] = useState([])
+
     // const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
     const [ArtistArt , setArtistArt] = useState([])
     const [soldArtistArt , setsoldArtistArt] = useState([])
     const [customerBid , setcustomerBid] = useState([])
     const [winnerbid , setwinnerbid] = useState([])
+
     const [AddArts , setAddArts] = useState([])
+
 
     function getArtResource(){
         if(!tokens){
@@ -182,13 +192,17 @@ export function useResource(){
     }
     ///////////////////////update price/////////////
     function updatePrice(item, newPrice) {
+
         // if (!tokens) {
         //     return "no tokens";
         // }
+
+
         try {
             const updatePriceUrl = update_price_url+`${item.id}/`;
             axios.put(updatePriceUrl, { current_price: newPrice }, { headers: { Authorization: `Bearer ${tokens.access}` } })
                 .then(response => {
+
                     return response.data
                 })
                 .catch(error => handleError(error));
@@ -214,6 +228,7 @@ export function useResource(){
         }
     }
       
+
     
 
     return{
@@ -228,8 +243,10 @@ export function useResource(){
         getSoldArtistArt: soldArtistArt,
         CustomerBid: customerBid,
         WonBid: winnerbid,
+
         loading : tokens && !error && !data ,
         updatePrice,
         AddArt,
+
     }
 }

@@ -2,6 +2,7 @@ import React from "react";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth";
 export default function Header() {
+
   const { login, username, logout } = useAuth()
   const user_data = typeof window !== 'undefined' ? localStorage.getItem("authState") : null;
   return (
@@ -67,6 +68,6 @@ export default function Header() {
 
 
 
-  );
-};
 
+  );
+}

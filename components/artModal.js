@@ -13,12 +13,12 @@ const ArtModal = (props) => {
 
   return (
     <div>
-      <button
+      {/* <button
         onClick={openModal}
         className="p-2 text-2xl font-bold text-white bg-blue-500 rounded"
       >
         Open Modal
-      </button>
+      </button> */}
 
       {isModalOpen && (
         <div

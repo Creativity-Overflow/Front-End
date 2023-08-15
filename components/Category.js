@@ -42,10 +42,10 @@ const CategoryList = () => {
       {selectedCategory === "On going bid" && <Customerbid />}
       {selectedCategory === "Winner" && <WonBids />}
 
-
     </div>
   );
 };
+
 
 export default CategoryList;
 

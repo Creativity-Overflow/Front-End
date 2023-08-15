@@ -1,4 +1,6 @@
+
 import { useAuth } from "@/contexts/auth";
+
 import { useResource } from "@/hooks/useResousrce";
 import React, { useState } from "react";
 
@@ -6,8 +8,10 @@ import React, { useState } from "react";
 export default function AllArts() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
+
   const [newPrice, setNewPrice] = useState("");
   // const{updatePrice}=useAuth()
+
 
   const modalClose = () => {
     setModalOpen(false);
@@ -17,6 +21,7 @@ export default function AllArts() {
     setModalOpen(true);
     setitemModel(item);
   };
+
   const { getArts, loading,updatePrice} = useResource();
   const handleSubmit = async (item) => {
     // event.preventDefault();
@@ -24,6 +29,7 @@ export default function AllArts() {
     updatePrice(item,newPrice)
     modalClose();
   };
+
   return (
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
@@ -76,6 +82,8 @@ export default function AllArts() {
                       {itemModel.name}
                     </h2>
                   </div>
+
+
                   <div>
                     <h3 className="title">
                       Category:{"  "}
@@ -90,10 +98,12 @@ export default function AllArts() {
                     <input
                       type="number"
                       placeholder="Enter bid amount"
+
                       value={newPrice}
                       onChange={(e)=>setNewPrice(e.target.value)}
                       // name="newprice"
                       // onChange={()=>}
+
                     />
                   </div>
                 </div>
@@ -104,7 +114,9 @@ export default function AllArts() {
                   >
                     Cancel
                   </button>
+
                   <button onClick={()=>handleSubmit(itemModel)} className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+
                     Update
                   </button>
                 </div>

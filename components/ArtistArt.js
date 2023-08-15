@@ -1,5 +1,7 @@
 import { useResource } from "@/hooks/useResousrce";
+
 import React, { useState} from "react";
+
 
 export default function ArtistArt() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -18,6 +20,7 @@ export default function ArtistArt() {
     <>
       {/* <main className="page-content"> */}
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
+
         {getArtsArtist.map((card, index) => (
           <div key={index} className="w-1/5 h-full m-2">
             <div
@@ -45,6 +48,7 @@ export default function ArtistArt() {
             </div>
           </div>
         ))}
+
         </div>
         {isModalOpen && (
           <div
@@ -64,10 +68,12 @@ export default function ArtistArt() {
                 <div className="text-black">
                   <div>
                     <h2 className="title">{itemModel.name}</h2>
+
                   </div>
                   <div className="copy">
                     <p>{itemModel.description}</p>
                   </div>
+
                   <div>
                     <h3 className="title">{itemModel.category}</h3>
                   </div>
@@ -79,7 +85,10 @@ export default function ArtistArt() {
                   >
                     Cancel
                   </button>
+
                
+
+
                   <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
                     Update
                   </button>
