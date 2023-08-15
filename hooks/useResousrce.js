@@ -97,6 +97,7 @@ export function useResource(){
         try{
 
             const res = await axios.get(get_physical_arts_url)
+            setArt(res.data)
             return res.data
             // axios.get(get_art_url)
             // .then(response =>{
