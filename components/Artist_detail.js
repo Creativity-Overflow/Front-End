@@ -1,4 +1,5 @@
 import { useAuth } from "@/contexts/auth";
+import ButtonArt from "./ButtonArt";
 export default function ArtistProfile ()  {
     const {username,email} = useAuth();
     return (
@@ -15,7 +16,7 @@ export default function ArtistProfile ()  {
           <div>
             <p className="text-gray-600">{username}</p>
             <p className="text-gray-600">{email}</p>
-            <p className="text-gray-500">Jordan-Blue city</p>
+            <ButtonArt />
           </div>
           </div>
         </div>

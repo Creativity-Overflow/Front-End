@@ -78,7 +78,7 @@ export default function SignUp() {
             className="hidden bg-cover lg:block lg:w-2/3"
             style={{
               backgroundImage:
-                "url(https://media.giphy.com/media/Iw8fHoP37Xi36/giphy.gif)",
+                "url(https://www.ryanseslow.com/wp-content/uploads/2018/05/IMB_5ACj1m.gif)",
             }}
           >
             <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
@@ -107,6 +107,14 @@ export default function SignUp() {
           <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
             <div className="flex-1">
               <div className="text-center">
+              </div>
+
+              <div className="mt-8">
+                <div className="flex justify-center mx-auto">
+
+                </div>
+                  <img className="" src="https://cdn.discordapp.com/attachments/1088176345957290005/1140939277220454491/image.png" alt="logo" />
+                </div>
                 <div className="mt-4 text-sm text-center text-gray-400">
                   Are you an artist?{" "}
                   <Link href="/signupartist" passHref legacyBehavior>
@@ -114,17 +122,9 @@ export default function SignUp() {
                       Sign Up here!
                     </a>
                   </Link>
-                </div>
-                <div className="flex justify-center mx-auto">
-                  <img className="w-auto h-7 sm:h-8" src="public/images/image.png" alt="logo" />
-                </div>
-
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
                   Sign up to create a new account
                 </p>
-              </div>
-
-              <div className="mt-8">
                 <form onSubmit={handleSubmit}>
                   <div>
                     <label

@@ -1,4 +1,3 @@
-import { colors } from '@nextui-org/react';
 import React, { useState, useEffect } from 'react';
 // import "@/components/slider.css"
 
@@ -142,11 +141,11 @@ export default function Slider3d() {
     }, []);
     return (
         <div className='all3d '>
-            <div className='strin3d '>
-                <h1 className='' style={{ fontSize: '40px', color: "snow" }}>Welcome to Creativity Overflow </h1>
-                <h2 style={{ fontSize: '25px', color: "snow" }}>Where your Creativity is Unlimited </h2>
+            <div className='strin3d bg-black bg-opacity-70 mt-32 ' >
+                <h1 className='mt-10' style={{ fontSize: '40px', color: "snow" }}>Welcome to Creativity Overflow </h1>
+                <h2 className='m-5' style={{ fontSize: '20px', color: "snow" }}>Where your Creativity is Unlimited </h2>
             </div>
-            <div className="threeD mt-52">
+            <div className="threeD mt-32">
                 <div id="drag-container">
                     <div
                         id="spin-container"
@@ -192,17 +191,21 @@ export default function Slider3d() {
                         </a>
 
 
-                        <p style={{ fontSize: '20px' }}>Creativity Overflow</p>
-                    </div>
-                    <div
-                        id="ground"
+                        <p style={{
+                            fontSize: '20px', "backgroundImage": "url('https://cdn.discordapp.com/attachments/1088176345957290005/1140939277220454491/image.png')", "backgroundSize": "cover",
+                            "background-position": "center"
+ }}></p>
 
-                    ></div>
                 </div>
+                <div
+                    id="ground"
 
-
+                > </div>
             </div>
+
+
         </div>
+        </div >
     );
 }
 

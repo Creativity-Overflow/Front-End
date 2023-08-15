@@ -2,7 +2,7 @@ import { useResource } from "@/hooks/useResousrce";
 import React, { useState} from "react";
 
 // import Modal from "./Modal";
-export default function soldArtistArt() {
+export default function Customerbid() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
 
@@ -14,12 +14,12 @@ export default function soldArtistArt() {
     setModalOpen(true);
     setitemModel(item);
   };
-  const { getSoldArtistArt } = useResource();
+  const { CustomerBid } = useResource();
   return (
     <>
    
    <div className="flex flex-row flex-wrap justify-around w-full rounded">
-       {getSoldArtistArt.map((card, index) => (
+       {CustomerBid.map((card, index) => (
         <div key={index} className="w-1/5 h-full m-2">
           <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%",width:"90%"}}>
             <div className="image"></div>
@@ -88,7 +88,7 @@ export default function soldArtistArt() {
         </div> 
 
         
-     
+    
     </>
   );
 }

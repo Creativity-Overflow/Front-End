@@ -114,7 +114,7 @@ export default function CreateForm() {
           onClick={openModal}
           className="bg-slate-500 text-white p-2 rounded text-2xl font-bold"
         >
-          Open Form
+          Add Art
         </button>
       </div>
     </>
