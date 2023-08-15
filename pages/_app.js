@@ -14,7 +14,7 @@ function App({ Component, pageProps }) {
         <link rel="preconnect" href="https://fonts.gstatic.com/" crossOrigin="true" />
         <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@1,600&display=swap" rel="stylesheet" />
       </Head>
-      <body className="flex flex-col justify-between">
+     
         <AuthProvider>
           <Header />
             <main>
@@ -22,7 +22,7 @@ function App({ Component, pageProps }) {
             </main>
           <Footer />
         </AuthProvider>
-      </body>
+      
     </>
   );
 }

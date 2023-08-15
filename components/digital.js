@@ -1,8 +1,10 @@
 import { useResource } from "@/hooks/useResousrce";
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 export default function DigitalArts() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
+  const [magic, setMagic] = useState(true);
+  const [newPrice, setNewPrice] = useState("");
 
   const modalClose = () => {
     setModalOpen(false);
@@ -12,11 +14,29 @@ export default function DigitalArts() {
     setModalOpen(true);
     setitemModel(item)
   };
-  const { digitalArt} = useResource();
+  const {updatePrice,getDigitalArt} = useResource();
+  const [newart,setNewArt]=useState(undefined)
+  const handleSubmit = async (item) => {
+    await updatePrice(item,newPrice)
+    modalClose();
+   const x= await getDigitalArt()
+   setNewArt(x)
+   setMagic(!magic)
+  };
+  useEffect(()=>{
+    async function amjad(){
+    const x= await getDigitalArt()
+   setNewArt(x)
+    }
+    amjad()
+
+  },[magic,setMagic])
+  
   return (
     <>
     <div className="flex flex-row flex-wrap justify-around w-full rounded">
-     {digitalArt.map((card, index) => (
+      {!newart?<h1>loading..</h1>:<>
+     {newart.map((card, index) => (
       <div key={index} className="w-1/5 h-full m-2">
         <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%",width:"90%"}}>
           <div className="image"></div>
@@ -31,7 +51,7 @@ export default function DigitalArts() {
           </div>
         </div>
       </div>
-    ))}
+    ))}</>}
         {isModalOpen && (
                 <div
                   className="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster mt-34"
@@ -63,7 +83,17 @@ export default function DigitalArts() {
                       </div>
                       <div>
                       <p>{itemModel.highest_bidder_name}Current price{"   "}{itemModel.current_price}</p>
+                      <input
+                      type="number"
+                      placeholder="Enter bid amount"
+                      value={newPrice}
+                      onChange={(e)=>setNewPrice(e.target.value)}
+                      // name="newprice"
+                      // onChange={()=>}
+                    />
+                  </div>
                       </div>
+                      
                       </div>
                       <div className="flex justify-end pt-2">
                         <button
@@ -72,14 +102,14 @@ export default function DigitalArts() {
                         >
                           Cancel
                         </button>
-                        <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+                        <button onClick={()=>handleSubmit(itemModel)} className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
                           Update
                         </button>
                         
                       </div>
                     </div>
                   </div>
-                </div>
+               
               )}
       </div>
     
