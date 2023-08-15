@@ -90,37 +90,65 @@ export function useResource(){
     }
 
     /////////////////////physical arts////////////////////
-    function getPhysical(){
-        axios.get(get_physical_arts_url)
-        .then((response)=>{
-            console.log(response.data)
-            setPhysArt(response.data)
-        })
-        .catch((error)=>{
-            handleError(error)
-        })
+    async function getPhysical(){
+        if(!tokens){
+            return "no tokens";
+        }
+        try{
+
+            const res = await axios.get(get_physical_arts_url)
+            return res.data
+            // axios.get(get_art_url)
+            // .then(response =>{
+            //     setArt(response.data)
+            //     return response.data
+                
+            // }).catch(error=>handleError(error))
+        }
+        catch{
+            console.log("Error: something went wrong")
+        }
     }
     /////////////////////////photography fetch//////////////////
-    function getPhotography(){
-        axios.get(get_photography_url)
-        .then((response)=>{
-            console.log(response.data)
-            setPhotos(response.data)
-        })
-        .catch((error)=>{
-            handleError(error)
-        })
+    async function getPhotography(){
+        if(!tokens){
+            return "no tokens";
+        }
+        try{
+
+            const res = await axios.get(get_photography_url)
+            return res.data
+            // axios.get(get_art_url)
+            // .then(response =>{
+            //     setArt(response.data)
+            //     return response.data
+                
+            // }).catch(error=>handleError(error))
+        }
+        catch{
+            console.log("Error: something went wrong")
+        }
     }
     //////////////////////// digital fetch ///////////////////
-    function getDigitalArt(){
-        axios.get(get_digital_art_url)
-        .then((response)=>{
-            console.log(response.data)
-            setDigital(response.data)
-        })
-        .catch((error)=>{
-            handleError(error)
-        })
+    async function getDigitalArt(){
+        if(!tokens){
+            return "no tokens";
+        }
+        try{
+
+            const res = await axios.get(get_digital_art_url)
+            return res.data
+            // axios.get(get_art_url)
+            // .then(response =>{
+            //     setArt(response.data)
+            //     return response.data
+                
+            // }).catch(error=>handleError(error))
+        }
+        catch{
+            console.log("Error: something went wrong")
+        }
+        // return data
     }
     ///////////////////////////////////////////////////////////
 
@@ -241,5 +269,8 @@ export function useResource(){
         updatePrice,
         AddArt,
         getArtResource,
+        getDigitalArt,
+        getPhotography,
+        getPhysical,
     }
 }

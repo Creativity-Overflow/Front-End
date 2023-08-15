@@ -3,7 +3,7 @@ export default function WallArts() {
     return (
         <section className=" dark:text-gray-100 " style={{
             alignItems: "center",
-            "background-image":
+            "backgroundImage":
                 "url(https://cdn.discordapp.com/attachments/1088176345957290005/1140948868280881152/wall-art-removebg-preview.png)", "backgroundSize": "cover"
         }}>
             <div className="ml-10 flex flex-col justify-between p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
