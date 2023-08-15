@@ -1,17 +1,21 @@
 import { useState } from "react";
 import Link from "next/link";
+import axios from 'axios';
 import { useAuth } from "@/contexts/auth";
+import uploadImageToAzure from "./uploadImageToAzureStorage";
 
 export default function SignUp() {
+  const {signup_customer}=useAuth()
+  const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState({
     username: "",
     email: "",
     password1: "",
     password2: "",
     profilePicture: null,
-    isArtist: false,
+    isArtist: true,
   });
-  const {signup_customer} = useAuth()
+
   const [fieldErrors, setFieldErrors] = useState({
     username: false,
     email: false,
@@ -31,43 +35,36 @@ export default function SignUp() {
     const file = event.target.files[0];
     setFormData((prevData) => ({
       ...prevData,
-      image: file,
+      profilePicture: file,
     }));
+  };
+
+
+  const handleImageChange = (event) => {
+    const file = event.target.files[0];
+    setSelectedImage(file);
   };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+
+    if (selectedImage) {
+      const sasToken = "sp=racwdli&st=2023-08-15T16:25:59Z&se=2023-08-18T00:25:59Z&sv=2022-11-02&sr=c&sig=vDctGTXrq7uvQyvZ4AxEuALtDH6xs%2FOBpXCBSLy38Ms%3D";
+      try {
+        var url = await uploadImageToAzure(selectedImage, sasToken);
+        console.log(url);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+    }
     const body=await {
       username:event.target.username.value,
       email:event.target.email.value,
       password1:event.target.password1.value,
       password2:event.target.password2.value,
+      image:url,
     }
-    console.log(body)
-    const newFieldErrors = {};
-    for (const field in formData) {
-      if (formData[field] === "") {
-        newFieldErrors[field] = true;
-      }
-    }
-    setFieldErrors(newFieldErrors);
-    
     signup_customer(body)
-    if (formData.password1 !== formData.password2) {
-      alert("Passwords do not match.");
-      return;
-    }
-
-    // if (Object.keys(newFieldErrors).length === 0) {
-    //   try {
-    //     const response = await axios.post("/signup/", formData);
-    //     console.log("Signup successful:", response.data);
-    //     // Handle successful signup (e.g., show a success message, redirect, etc.)
-    //   } catch (error) {
-    //     console.error("Signup error:", error.response.data);
-    //     // Handle signup error (e.g., show an error message)
-    //   }
-    // }
   };
 
   return (
@@ -78,7 +75,7 @@ export default function SignUp() {
             className="hidden bg-cover lg:block lg:w-2/3"
             style={{
               backgroundImage:
-                "url(https://www.ryanseslow.com/wp-content/uploads/2018/05/IMB_5ACj1m.gif)",
+                "url(https://media.giphy.com/media/Iw8fHoP37Xi36/giphy.gif)",
             }}
           >
             <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
@@ -107,14 +104,6 @@ export default function SignUp() {
           <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
             <div className="flex-1">
               <div className="text-center">
-              </div>
-
-              <div className="mt-8">
-                <div className="flex justify-center mx-auto">
-
-                </div>
-                  <img className="" src="https://cdn.discordapp.com/attachments/1088176345957290005/1140939277220454491/image.png" alt="logo" />
-                </div>
                 <div className="mt-4 text-sm text-center text-gray-400">
                   Are you an artist?{" "}
                   <Link href="/signupartist" passHref legacyBehavior>
@@ -122,9 +111,17 @@ export default function SignUp() {
                       Sign Up here!
                     </a>
                   </Link>
+                </div>
+                <div className="flex justify-center mx-auto">
+                  <img className="w-auto h-7 sm:h-8" src="public/images/image.png" alt="logo" />
+                </div>
+
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
                   Sign up to create a new account
                 </p>
+              </div>
+
+              <div className="mt-8">
                 <form onSubmit={handleSubmit}>
                   <div>
                     <label
@@ -245,7 +242,7 @@ export default function SignUp() {
                       accept="image/*"
                       name="profilePicture"
                       id="profilePicture"
-                      onChange={handleImageUpload}
+                      onChange={handleImageChange}
                       className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
                     />
                   </div>
