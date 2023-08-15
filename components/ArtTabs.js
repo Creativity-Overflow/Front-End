@@ -37,22 +37,40 @@ export function ArtTabs() {
                     onClick={() => handleTabClick("physical_art")}
                     className={activeTab === "physical_art" ? "text-gray-900" : ""}
                 >
-                    <div class="relative px-6 py-3 font-bold text-white rounded-lg group">
-                        <span class="absolute inset-0 w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-purple-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
-                        <span class="absolute inset-0 w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-pink-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
-                        <span class="relative">Physical Art</span>
-                    </div>
+                    <a className=" relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group" style={{ "width": "180px", "align-self": "center" }}>
+                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20  bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
+                        {/* <!-- Top glass gradient --> */}
+                        <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+                        {/* <!-- Bottom gradient --> */}
+                        <span className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+                        {/* <!-- Left gradient --> */}
+                        <span className="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+                        {/* <!-- Right gradient --> */}
+                        <span className="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+                        <span className="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+                        <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+                        <span className="relative">physical art</span>
+                    </a>
                 </Tab>
                 <Tab
                     value="digital_art"
                     onClick={() => handleTabClick("digital_art")}
                     className={activeTab === "digital_art" ? "text-gray-900" : ""}
                 >
-                    <div class="relative px-6 py-3 font-bold text-white rounded-lg group">
-                        <span class="absolute inset-0 w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-purple-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
-                        <span class="absolute inset-0 w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-pink-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
-                        <span class="relative">Digital Art</span>
-                    </div>
+                    <a className=" relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group" style={{ "width": "180px", "align-self": "center" }}>
+                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20  bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
+                        {/* <!-- Top glass gradient --> */}
+                        <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+                        {/* <!-- Bottom gradient --> */}
+                        <span className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+                        {/* <!-- Left gradient --> */}
+                        <span className="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+                        {/* <!-- Right gradient --> */}
+                        <span className="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+                        <span className="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+                        <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+                        <span className="relative">Digital Art</span>
+                    </a>
                 </Tab>
                 <Tab
                     value="photography"
@@ -60,11 +78,20 @@ export function ArtTabs() {
                     className={activeTab === "photography" ? "text-gray-900" : ""}
                 >
 
-                    <div class="relative px-6 py-3 font-bold text-white rounded-lg group">
-                        <span class="absolute inset-0 w-full h-full transition duration-300 transform -translate-x-1 -translate-y-1 bg-purple-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0"></span>
-                        <span class="absolute inset-0 w-full h-full transition duration-300 transform translate-x-1 translate-y-1 bg-pink-800 ease opacity-80 group-hover:translate-x-0 group-hover:translate-y-0 mix-blend-screen"></span>
-                        <span class="relative">Photography</span>
-                    </div>
+                    <a className=" relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group" style={{ "width": "180px", "align-self": "center" }}>
+                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20  bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
+                        {/* <!-- Top glass gradient --> */}
+                        <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
+                        {/* <!-- Bottom gradient --> */}
+                        <span className="absolute bottom-0 left-0 w-full h-1/3 bg-gradient-to-t from-white to-transparent opacity-5"></span>
+                        {/* <!-- Left gradient --> */}
+                        <span className="absolute bottom-0 left-0 w-4 h-full bg-gradient-to-r from-white to-transparent opacity-5"></span>
+                        {/* <!-- Right gradient --> */}
+                        <span className="absolute bottom-0 right-0 w-4 h-full bg-gradient-to-l from-white to-transparent opacity-5"></span>
+                        <span className="absolute inset-0 w-full h-full border border-white rounded-md opacity-10"></span>
+                        <span className="absolute w-0 h-0 transition-all duration-300 ease-out bg-white rounded-full group-hover:w-56 group-hover:h-56 opacity-5"></span>
+                        <span className="relative">photography</span>
+                    </a>
 
                 </Tab>
             </TabsHeader>

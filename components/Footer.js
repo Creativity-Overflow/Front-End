@@ -5,7 +5,7 @@ function Footer() {
   return (
     <>
       
-      <footer className="bg-blue-200  bottom-0 left-0 w-full" style={{"background-image": "url('https://w0.peakpx.com/wallpaper/405/807/HD-wallpaper-blue-stone-background-stone-textures-grunge-backgrounds-stone-wall-blue-backgrounds-violet-stone.jpg');"}}>
+      <footer className=" bottom-0 left-0 w-full bg-black bg-opacity-30" >
         <div className="mx-auto w-full max-w-screen-xl">
           <div className="md:flex md:justify-between">
             <div className="p-5 ">

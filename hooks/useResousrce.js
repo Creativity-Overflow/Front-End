@@ -2,38 +2,30 @@ import axios from "axios" ;
 import { useAuth } from "@/contexts/auth" ;
 import { useState } from "react" ;
 import useSWR from 'swr' ;
-import physicalArts from "@/components/physicalArts";
-
 export function useResource(){
     const get_photography_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/photos/"
     const get_digital_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/digital/"
+    const get_physical_arts_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/physical/"
     const get_art_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
     const update_price_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
     const get_inventory_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
 
-    const get_physical_arts_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/physical/"
-    // const get_digital_arts_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/digital/"
-    // const get_photos_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/photos/"
+    const post_artist_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/"
 
     const get_artist_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/artist-art/"
+    const get_sold_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/sold-artist-art/"
+    const get_customer_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/customer-bidds/"
+    const get_win_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/won-bids/"
 
     const {tokens,logout} = useAuth()
     const {data,error} = useSWR([get_art_url],getArtResource)
     const {inven,invenError} = useSWR([get_inventory_url,tokens],getInventory)
-
     const {physical,physError}= useSWR([get_physical_arts_url],getPhysical)
     const {photography,photError}= useSWR([get_photography_url],getPhotography)
     const {digitalArt,digiError}= useSWR([get_digital_art_url],getDigitalArt)
     const {updatepricee,updteError}= useSWR([update_price_url],updatePrice)
-    const get_sold_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/sold-artist-art/"
-    const get_customer_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/customer-bidds/"
-    const get_win_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/won-bids/"
-    // const {tokens,logout} = useAuth()
-    // get data to render in home page
-    // const {data,error} = useSWR([get_art_url , tokens],getArtResource)
-    // get data to render in artist page in inventory
-    // const {inven,invenError} = useSWR([get_inventory_url,tokens],getInventory)
-    // get data to render artist art in artist page
+
+
     const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
     // get the art sold for the artist
     const {sold,soldError} = useSWR([get_sold_art_url,tokens],getsoldArtistArt)
@@ -41,12 +33,16 @@ export function useResource(){
     const {bid,bidError} = useSWR([get_customer_bid_url,tokens],getCusomerbid)
     // won bidds for artist 
     const {won,wonError} = useSWR([get_win_bid_url,tokens],getWonBid)
+
+    const {addart,addartError} = useSWR([post_artist_art_url ,tokens],AddArt)
+
     const [art , setArt] = useState([])
     const [inventory , setInventory] = useState([])
     const [physArt , setPhysArt] = useState([])
     const [photos , setPhotos] = useState([])
     const [digital , setDigital] = useState([])
-    const [updateprice , setUpdateprice] = useState([])
+
+    // const [updateprice , setUpdateprice] = useState([])
 
     // const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
     const [ArtistArt , setArtistArt] = useState([])
@@ -54,11 +50,13 @@ export function useResource(){
     const [customerBid , setcustomerBid] = useState([])
     const [winnerbid , setwinnerbid] = useState([])
 
+    const [AddArts , setAddArts] = useState([])
+
 
     function getArtResource(){
-        // if(!tokens){
-        //     return "no tokens";
-        // }
+        if(!tokens){
+            return "no tokens";
+        }
         try{
             axios.get(get_art_url)
             .then(response =>{
@@ -194,42 +192,61 @@ export function useResource(){
     }
     ///////////////////////update price/////////////
     function updatePrice(item, newPrice) {
-        if (!tokens) {
-            return "no tokens";
-        }
+
+        // if (!tokens) {
+        //     return "no tokens";
+        // }
+
+
         try {
             const updatePriceUrl = update_price_url+`${item.id}/`;
             axios.put(updatePriceUrl, { current_price: newPrice }, { headers: { Authorization: `Bearer ${tokens.access}` } })
                 .then(response => {
-                    // Update the art item with the new price
-                    const updatedArt = art.map(artItem => artItem.id === item.id ? { ...artItem, current_price: newPrice } : artItem);
-                    setArt(updatedArt);
-                    // Update the winnerbid state or any other necessary state
-                    setUpdateprice(response.data);
+
+                    return response.data
                 })
                 .catch(error => handleError(error));
-        } catch {
-            console.log("Error: something went wrong");
+        } catch(error) {
+            console.log(error);
+        }
+      }
+      function AddArt(obj){
+        if(!tokens){
+            return "no tokens";
+        }
+        try{
+            console.log(tokens)
+            axios.post(post_artist_art_url,obj,{headers:{Authorization: `Bearer ${tokens.access}`}})
+            .then(response =>{
+                // console.log(response)
+                return response.data
+
+            }).catch(error=>handleError(error))
+        }
+        catch{
+            console.log("Error: something went wrong")
         }
     }
+      
+
     
 
     return{
 
         getArts : art ,
-        loading : tokens && !error && !data ,
         getInvontry: inventory,
-
         physicalArts : physArt,
         phyloading: physArt && !physError,
         digitalArt : digital,
         photography: photos,
-
         getArtsArtist: ArtistArt,
         getSoldArtistArt: soldArtistArt,
         CustomerBid: customerBid,
         WonBid: winnerbid,
 
-        putPrice:updateprice,
+        loading : tokens && !error && !data ,
+        updatePrice,
+        AddArt,
+
     }
 }

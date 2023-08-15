@@ -27,7 +27,7 @@ export default function ReversedSlider() {
                     <img className="aspect-square max-w-[clamp(10rem,28vmin,20rem)] rounded-md object-cover shadow-md" src="https://source.unsplash.com/TSYQ5stQVjg" alt="" />
                 </div>
             </div>
-            <p style={{ "align-self": "center" , "fontSize": "25px" , "color":"white"}}>Step into a realm of inspiration. Our art gallery is a sanctuary where the ordinary transforms into the extraordinary.</p>
+            <p  style={{ "align-self": "center" , "fontSize": "30px" , "color":"black"}}>Step into a realm of inspiration. Our art gallery is a sanctuary where the ordinary transforms into the extraordinary.</p>
             <div className="pointer-events-none relative mt-10 flex gap-10 overflow-hidden">
                 <div className="animate-marquee flex min-w-full shrink-0 items-center justify-around gap-10 animate-marquee-reverse">
                     {/* Reversed set of images */}

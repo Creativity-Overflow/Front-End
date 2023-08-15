@@ -19,7 +19,9 @@ export default function WonBids() {
     <>
    
    <div className="flex flex-row flex-wrap justify-around w-full rounded">
-       {getArts.map((card, index) => (
+
+       {WonBid.map((card, index) => (
+
         <div key={index} className="w-1/5 h-full m-2">
           <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%",width:"90%"}}>
             <div className="image"></div>
@@ -90,4 +92,7 @@ export default function WonBids() {
         
       </>
   );
+
 }
+
+

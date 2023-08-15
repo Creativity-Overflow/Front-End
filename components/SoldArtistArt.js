@@ -2,7 +2,7 @@ import { useResource } from "@/hooks/useResousrce";
 import React, { useState} from "react";
 
 // import Modal from "./Modal";
-export default function ArtistArt() {
+export default function soldArtistArt() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
 

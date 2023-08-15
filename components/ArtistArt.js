@@ -1,7 +1,8 @@
 import { useResource } from "@/hooks/useResousrce";
-import React, { useState, useEffect } from "react";
 
-// import Modal from "./Modal";
+import React, { useState} from "react";
+
+
 export default function ArtistArt() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
@@ -19,22 +20,35 @@ export default function ArtistArt() {
     <>
       {/* <main className="page-content"> */}
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
-       {getArtsArtist.map((card, index) => (
-        <div key={index} className="w-1/5 h-full m-2">
-          <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%",width:"90%"}}>
-            <div className="image"></div>
-            <div className="content">
-              <h2 className="title">{card.name}</h2>
-              <p>{card.category}</p>
-              <p>{card.highest_bidder_name} {card.current_price}</p>
-              <p>{card.artist_name}</p>
-              <button className="btn" onClick={() => openModal(card)}>
-                Place your bid
-              </button>
+
+        {getArtsArtist.map((card, index) => (
+          <div key={index} className="w-1/5 h-full m-2">
+            <div
+              className={"card"}
+              style={{
+                backgroundImage: `url(${card.image})`,
+                backgroundSize: "cover",
+                height: "100%",
+                width: "90%",
+              }}
+            >
+              <div className="image"></div>
+              <div className="content">
+                <h2 className="title">{card.name}</h2>
+                <p>{card.category}</p>
+
+                <p>
+                  {card.highest_bidder_name} {card.current_price}
+                </p>
+                <p>{card.artist_name}</p>
+                <button className="btn" onClick={() => openModal(card)}>
+                  Place your bid
+                </button>
+              </div>
             </div>
           </div>
-        </div>
-      ))}
+        ))}
+
         </div>
         {isModalOpen && (
           <div
@@ -54,10 +68,12 @@ export default function ArtistArt() {
                 <div className="text-black">
                   <div>
                     <h2 className="title">{itemModel.name}</h2>
+
                   </div>
                   <div className="copy">
                     <p>{itemModel.description}</p>
                   </div>
+
                   <div>
                     <h3 className="title">{itemModel.category}</h3>
                   </div>
@@ -69,9 +85,10 @@ export default function ArtistArt() {
                   >
                     Cancel
                   </button>
-                  <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
-                    Confirm
-                  </button>
+
+               
+
+
                   <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
                     Update
                   </button>
