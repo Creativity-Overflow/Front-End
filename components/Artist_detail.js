@@ -3,7 +3,7 @@ import ButtonArt from "./ButtonArt";
 import { decode } from "jsonwebtoken";
 
 export default function ArtistProfile ()  {
-    const {username,email, image} = useAuth();
+    const {username,email, image ,credits} = useAuth();
 
     // const local = localStorage.getItem("authState") 
     // const userData= decode(local.access)
@@ -25,6 +25,10 @@ export default function ArtistProfile ()  {
             <br>
             </br>
             <p className="text-white">{email}</p>
+            <br>
+            </br>
+            <p className="text-white">{credits}</p>
+
             <ButtonArt />
           </div>
           </div>
