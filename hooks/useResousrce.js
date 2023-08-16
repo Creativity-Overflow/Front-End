@@ -101,9 +101,7 @@ export function useResource() {
 
     /////////////////////physical arts////////////////////
     async function getPhysical() {
-        if (!tokens) {
-            return "no tokens";
-        }
+        
         try {
 
             const res = await axios.get(get_physical_arts_url)
@@ -122,9 +120,7 @@ export function useResource() {
     }
     /////////////////////////photography fetch//////////////////
     async function getPhotography() {
-        if (!tokens) {
-            return "no tokens";
-        }
+        
         try {
 
             const res = await axios.get(get_photography_url)
@@ -142,9 +138,7 @@ export function useResource() {
     }
     //////////////////////// digital fetch ///////////////////
     async function getDigitalArt() {
-        if (!tokens) {
-            return "no tokens";
-        }
+        
         try {
 
             const res = await axios.get(get_digital_art_url)
