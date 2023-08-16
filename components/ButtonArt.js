@@ -1,14 +1,19 @@
+
+
+
 import React, { useState } from "react";
 import { useResource } from "@/hooks/useResousrce";
+import uploadImageToAzure from "./uploadImageToAzureStorage";
 
 const ButtonArt = () => {
+  const [selectedImage, setSelectedImage] = useState(null)
   const [isModalOpen, setModalOpen] = useState(false);
   const [artData, setArtData] = useState({
     name: "",
     description: "",
     category: "",
     end_date: "",
-    // image: null,
+    image: "",
   });
 
   const modalClose = () => {
@@ -19,7 +24,7 @@ const ButtonArt = () => {
       description: "",
       category: "",
       end_date: "",
-    //   image: null,
+      //   image: null,
     });
   };
 
@@ -37,30 +42,44 @@ const ButtonArt = () => {
     }));
   };
 
-//   const handleImageUpload = (e) => {
-//     const imageFile = e.target.files[0];
-//     setArtData((prevData) => ({
-//       ...prevData,
-//       image: imageFile,
-//     }));
-//   };
+  const handleImageUpload = (e) => {
+    const imageFile = e.target.files[0];
+    setSelectedImage(imageFile)
+  };
 
-  const handleAddArt = () => {
+  const handleAddArt = async () => {
     // Perform validation on artData before adding
-    if (
-      artData.name &&
-      artData.description &&
-      artData.category &&
-      artData.end_date 
-    //   artData.image
-    ) {
+   
+      if (selectedImage) {
+        const sasToken = "sp=racwdli&st=2023-08-15T16:25:59Z&se=2023-08-18T00:25:59Z&sv=2022-11-02&sr=c&sig=vDctGTXrq7uvQyvZ4AxEuALtDH6xs%2FOBpXCBSLy38Ms%3D";
+        try {
+          var url = await uploadImageToAzure(selectedImage, sasToken);
+          console.log(url);
+        } catch (error) {
+          console.error('Error uploading image:', error);
+        }
+        
+        setArtData({
+          ...artData,
+          image: url,
+        });
+      } else {
+        // Handle validation error
+        console.log("Please fill in all the fields");
+      }
+      if (
+        artData.name &&
+        artData.description &&
+        artData.category &&
+        artData.end_date &&
+        artData.image
+      )
+
+    {
       AddArt(artData);
       console.log(artData); // Assuming addArt expects an object with artwork data
-      modalClose(); // Close the modal after adding
+      setModalOpen(false); // Close the modal after adding
       // You can update your UI state here to reflect the newly added artwork data
-    } else {
-      // Handle validation error
-      console.log("Please fill in all the fields");
     }
   };
 
@@ -148,6 +167,23 @@ const ButtonArt = () => {
                     </div>
                   </div>
                 </div>
+                <div>
+                  <label
+                    htmlFor="image"
+                    className="block mt-4 mb-2 text-sm text-gray-600 dark:text-gray-200"
+                  >
+                    Profile Picture
+                  </label>
+                  <input
+                    type="file"
+                    accept="image/*"
+                    name="image"
+                    id="image"
+                    onChange={handleImageUpload}
+                    className="block w-full px-3 py-2 mt-2 text-sm text-gray-600 bg-white border border-gray-200 rounded-lg file:bg-gray-200 file:text-gray-700 file:text-sm file:px-4 file:py-1 file:border-none file:rounded-full dark:file:bg-gray-800 dark:file:text-gray-200 dark:text-gray-300 placeholder-gray-400/70 dark:placeholder-gray-500 focus:border-blue-400 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-40 dark:border-gray-600 dark:bg-gray-900 dark:focus:border-blue-300"
+                  />
+                </div>
+
                 {/* <div class="flex flex-col">
                   <label class="leading-loose">Upload Image</label>
                   <input

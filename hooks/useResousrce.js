@@ -17,6 +17,9 @@ export function useResource(){
     const get_customer_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/customer-bidds/"
     const get_win_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/won-bids/"
 
+    const update_Artist_art = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/artist-art/"
+    const update_inventory_art = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
+
     const {tokens,logout} = useAuth()
     const {data,error} = useSWR([get_art_url],getArtResource)
     const {inven,invenError} = useSWR([get_inventory_url,tokens],getInventory)
@@ -24,6 +27,8 @@ export function useResource(){
     const {photography,photError}= useSWR([get_photography_url],getPhotography)
     const {digitalArt,digiError}= useSWR([get_digital_art_url],getDigitalArt)
     const {updatepricee,updteError}= useSWR([update_price_url],updatePrice)
+    const { updateArtOfArtist, updteArtistartError } = useSWR([update_Artist_art], updateArtistArt)
+    const { updateInventoryArts, inventoryupdateError } = useSWR([update_inventory_art , tokens], updateInventoryArt)
 
 
     const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
@@ -50,16 +55,17 @@ export function useResource(){
     const [AddArts , setAddArts] = useState([])
 
     async function getArtResource(){
-        if(!tokens){
-            return "no tokens";
-        }
+        // if(!tokens){
+        //     return "no tokens";
+        // }
         try{
 
             const res = await axios.get(get_art_url)
+            setArt(res.data)
+            // console.log(res.data);
             return res.data
             // axios.get(get_art_url)
             // .then(response =>{
-            //     setArt(response.data)
             //     return response.data
                 
             // }).catch(error=>handleError(error))
@@ -72,8 +78,10 @@ export function useResource(){
     function handleError(error){
         console.log(error)
     }
+    /////////////////////getInventory////////////////////
 
     function getInventory(){
+        console.log(tokens);
         if(!tokens){
             return "no tokens";
         }
@@ -81,6 +89,8 @@ export function useResource(){
             axios.get(get_inventory_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
             .then(response =>{
                 setInventory(response.data)
+                console.log(response.data);
+                return response.data
             
             }).catch(error=>handleError(error))
         }
@@ -88,6 +98,8 @@ export function useResource(){
             console.log("Error: something went wrong")
         }
     }
+
+
 
     /////////////////////physical arts////////////////////
     async function getPhysical(){
@@ -251,13 +263,45 @@ export function useResource(){
             console.log("Error: something went wrong")
         }
     }
-      
+    
+    function updateArtistArt(item, newname, newdescription, newcategory) {
+
+
+        try {
+            const updateArtistArts = update_Artist_art + `${item.id}/`;
+            axios.put(updateArtistArts, { name: newname, description: newdescription, category: newcategory }, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+                    return response.data
+                })
+                .catch(error => handleError(error));
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+
+    function updateInventoryArt(item, newname, newdescription, newcategory , newImage , newArtist) {
+
+
+        try {
+            const updateInventory = update_inventory_art + `${item.id}/`;
+            axios.put(updateInventory, { name: newname, description: newdescription, category: newcategory , image : newImage , artist :newArtist }, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+
+                    console.log(response.data);
+                    return response.data
+                })
+                .catch(error => handleError(error));
+        } catch (error) {
+            console.log(error);
+        }
+    }  
     
 
     return{
 
         getArts : art ,
-        getInvontry: inventory,
+        Inventory: inventory,
         physicalArts : physArt,
         phyloading: physArt && !physError,
         digitalArt : digital,
@@ -273,5 +317,8 @@ export function useResource(){
         getDigitalArt,
         getPhotography,
         getPhysical,
+        updateArtistArt,
+        updateInventoryArt,
+        getInventory,
     }
 }

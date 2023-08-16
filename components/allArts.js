@@ -17,6 +17,7 @@ export default function AllArts() {
   const modalClose = () => {
     setModalOpen(false);
   };
+  
 
   const openModal = (item) => {
     setModalOpen(true);
