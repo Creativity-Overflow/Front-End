@@ -93,10 +93,9 @@ export default function ArtistArt() {
         >
           <div className="border border-teal-500 modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
             <div className="modal-content py-4 text-left px-6">
-              <div className=" justify-between items-center pb-3">
+              <div className="flex justify-between items-center pb-3">
                 <img
                   src={itemModel.image}
-                  // style={{width:"850px" , height:"500px"}}
                   alt="Header Image"
                   className="h-50 w-50"
                 />
