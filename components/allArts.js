@@ -28,6 +28,10 @@ export default function AllArts() {
   const [newart,setNewArt]=useState(undefined)
 
   const handleSubmit = async (item) => {
+    if(newPrice<item.current_price){
+      alert("your input price is lower than highest bid")
+      return 
+    }
     await updatePrice(item,newPrice)
     modalClose();
    const x= await getArtResource()
@@ -114,8 +118,6 @@ export default function AllArts() {
                       placeholder="Enter bid amount"
                       value={newPrice}
                       onChange={(e)=>setNewPrice(e.target.value)}
-                      // name="newprice"
-                      // onChange={()=>}
                     />
                   </div>
                 </div>
