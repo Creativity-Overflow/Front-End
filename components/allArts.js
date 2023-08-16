@@ -23,7 +23,13 @@ export default function AllArts() {
   };
 
   const handleSubmit = async (item) => {
-    await updatePrice(item, newPrice);
+
+    if(newPrice<item.current_price){
+      alert("your input price is lower than highest bid")
+      return 
+    }
+    await updatePrice(item,newPrice)
+
     modalClose();
     const x = await getArtResource();
     setNewArt(x);
@@ -150,6 +156,7 @@ export default function AllArts() {
               </div>
               <div className="">
                 <div className="text-black">
+
                   {itemModel && (
                     <div>
                       <h2 className="title">
@@ -180,6 +187,7 @@ export default function AllArts() {
                       />
                     </div>
                   )}
+
                 </div>
                 <div className="flex justify-end pt-2">
                   <button

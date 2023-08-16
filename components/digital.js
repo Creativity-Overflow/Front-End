@@ -17,7 +17,13 @@ export default function DigitalArts() {
   const { updatePrice, getDigitalArt } = useResource();
   const [newart, setNewArt] = useState(undefined)
   const handleSubmit = async (item) => {
-    await updatePrice(item, newPrice)
+
+    if(newPrice<item.current_price){
+      alert("your input price is lower than highest bid")
+      return 
+    }
+    await updatePrice(item,newPrice)
+
     modalClose();
     const x = await getDigitalArt()
     setNewArt(x)

@@ -7,21 +7,10 @@ import { useAuth } from "../contexts/auth";
 import { ArtTabs } from "@/components/ArtTabs";
 import WallArts from "@/components/WallArt";
 import PanalCat from "@/components/PanalCat";
-
-// import PersonalCard from "@/components/PersonalCards"
-// import Slider from "@/components/Background";
-// import ButtonHome from "@/components/HomeBotton";
-// import Card3d from "@/components/Card3d";
-
-
 export default function Home() {
   return (
     <>
-
-
-
       <div className="flex flex-col align-middle" >
-
         <div style={{ "height": "90vh" }}>
           <Slider3d />
         </div>
@@ -42,31 +31,7 @@ export default function Home() {
         <div className="min-h-screen">
           <ReversedSlider />
         </div>
-
-
-
-        {/* <div className="min-h-screen">
-          <CategorySlider data = {physical} categoryname = "Physical Art"/>
-        </div>  */}
-        {/* <div className="min-h-screen">
-          <CategorySlider data={digital} categoryname="Digital Art" />
-        </div> */}
-        {/* <div className="min-h-screen">
-          <CategorySlider data = {photography} categoryname = "Photography Art"/>
-        </div>  */}
-
-
-        {/* <Card3d /> */}
-        {/* <Slider data={digital} categoryname="Digital Art"/> */}
-        {/* 
-        {/* <PersonalCard />  */}
-        {/* <DialogCustomAnimation />  */}
-        {/* <ButtonHome /> */}
-
       </div>
-
-
-
     </>
   );
 }
