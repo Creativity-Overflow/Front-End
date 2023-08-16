@@ -10,7 +10,7 @@ import WonBids from "./WonBids";
 const categories = ["Inventory", "ArtistArt", "Sold", "On going bid", "Winner"];
 
 const CategoryList = () => {
-  const [selectedCategory, setSelectedCategory] = useState("Inventory");
+  const [selectedCategory, setSelectedCategory] = useState("ArtistArt");
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category === selectedCategory ? null : category);
