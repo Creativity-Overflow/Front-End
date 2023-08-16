@@ -75,34 +75,16 @@ export default function SignUp() {
             className="hidden bg-cover lg:block lg:w-2/3"
             style={{
               backgroundImage:
-                "url(https://media.giphy.com/media/Iw8fHoP37Xi36/giphy.gif)",
+                "url(https://www.ryanseslow.com/wp-content/uploads/2018/05/IMB_5ACj1m.gif)",
             }}
           >
             <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
-              <div>
-                <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                  Creativity Overflow
-                </h2>
-
-                <p className="max-w-xl mt-3 text-gray-300">
-                  Welcome to the world of creativity and beauty! Our website is
-                  your perfect destination to explore art in all its forms and
-                  colors. We offer a diverse collection of unique artworks and
-                  paintings that embody the talents and skills of our talented
-                  artists. Whether you're looking for art pieces to decorate
-                  your home or a special gift for a loved one, we provide you
-                  with a wonderful array of options. We look forward to helping
-                  you find pieces that cater to your refined taste and inspire
-                  you to continue your artistic journey, creating with
-                  brilliance. Thank you for your trust in us, and we are eager
-                  to serve you and enrich your life with the beauty of art.
-                </p>
-              </div>
+              
             </div>
           </div>
 
           <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
-            <div className="flex-1">
+            <div className="flex-1 my-5">
               <div className="text-center">
                 <div className="mt-4 text-sm text-center text-gray-400">
                   Are you an artist?{" "}
@@ -113,7 +95,7 @@ export default function SignUp() {
                   </Link>
                 </div>
                 <div className="flex justify-center mx-auto">
-                  <img className="w-auto h-7 sm:h-8" src="public/images/image.png" alt="logo" />
+                  <img  src="https://cdn.discordapp.com/attachments/1088176345957290005/1140939277220454491/image.png" alt="logo" />
                 </div>
 
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
