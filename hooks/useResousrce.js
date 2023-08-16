@@ -1,13 +1,13 @@
-import axios from "axios" ;
-import { useAuth } from "@/contexts/auth" ;
-import { useState } from "react" ;
-import useSWR from 'swr' ;
-export function useResource(){
+import axios from "axios";
+import { useAuth } from "@/contexts/auth";
+import { useState } from "react";
+import useSWR from 'swr';
+export function useResource() {
     const get_photography_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/photos/"
     const get_digital_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/digital/"
-    const get_physical_arts_url = process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/physical/"
-    const get_art_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
-    const update_price_url=process.env.NEXT_PUBLIC_BASE_URL+"api/v1/arts/"
+    const get_physical_arts_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/physical/"
+    const get_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/"
+    const update_price_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/"
     const get_inventory_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
 
     const post_artist_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/"
@@ -16,6 +16,7 @@ export function useResource(){
     const get_sold_art_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/sold-artist-art/"
     const get_customer_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/customer-bidds/"
     const get_win_bid_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/won-bids/"
+    const new_status_url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/move_row/"
 
     const update_Artist_art = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/artist-art/"
     const update_inventory_art = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/inventory/"
@@ -31,51 +32,48 @@ export function useResource(){
     const { updateInventoryArts, inventoryupdateError } = useSWR([update_inventory_art , tokens], updateInventoryArt)
 
 
-    const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
+    const { artistArt, artistArtError } = useSWR([get_artist_art_url, tokens], getArtistArt)
     // get the art sold for the artist
-    const {sold,soldError} = useSWR([get_sold_art_url,tokens],getsoldArtistArt)
+    const { sold, soldError } = useSWR([get_sold_art_url, tokens], getsoldArtistArt)
     // get the art hows bidded for the artist
-    const {bid,bidError} = useSWR([get_customer_bid_url,tokens],getCusomerbid)
+    const { bid, bidError } = useSWR([get_customer_bid_url, tokens], getCusomerbid)
     // won bidds for artist 
-    const {won,wonError} = useSWR([get_win_bid_url,tokens],getWonBid)
-    const {addart,addartError} = useSWR([post_artist_art_url ,tokens],AddArt)
-    const [art , setArt] = useState([])
-    const [inventory , setInventory] = useState([])
-    const [physArt , setPhysArt] = useState([])
-    const [photos , setPhotos] = useState([])
-    const [digital , setDigital] = useState([])
+    const { won, wonError } = useSWR([get_win_bid_url, tokens], getWonBid)
+    const { addart, addartError } = useSWR([post_artist_art_url, tokens], AddArt)
+    const [art, setArt] = useState([])
+    const [inventory, setInventory] = useState([])
+    const [physArt, setPhysArt] = useState([])
+    const [photos, setPhotos] = useState([])
+    const [digital, setDigital] = useState([])
 
     // const [updateprice , setUpdateprice] = useState([])
 
     // const {artistArt,artistArtError} = useSWR([get_artist_art_url,tokens],getArtistArt)
-    const [ArtistArt , setArtistArt] = useState([])
-    const [soldArtistArt , setsoldArtistArt] = useState([])
-    const [customerBid , setcustomerBid] = useState([])
-    const [winnerbid , setwinnerbid] = useState([])
-    const [AddArts , setAddArts] = useState([])
+    const [ArtistArt, setArtistArt] = useState([])
+    const [soldArtistArt, setsoldArtistArt] = useState([])
+    const [customerBid, setcustomerBid] = useState([])
+    const [winnerbid, setwinnerbid] = useState([])
+    const [AddArts, setAddArts] = useState([])
 
-    async function getArtResource(){
-        // if(!tokens){
-        //     return "no tokens";
-        // }
-        try{
+    async function getArtResource() {
+        
+        try {
 
             const res = await axios.get(get_art_url)
             setArt(res.data)
-            // console.log(res.data);
             return res.data
             // axios.get(get_art_url)
             // .then(response =>{
             //     return response.data
-                
+
             // }).catch(error=>handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
         // return data
     }
-    function handleError(error){
+    function handleError(error) {
         console.log(error)
     }
     /////////////////////getInventory////////////////////
@@ -94,7 +92,7 @@ export function useResource(){
             
             }).catch(error=>handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
@@ -102,11 +100,11 @@ export function useResource(){
 
 
     /////////////////////physical arts////////////////////
-    async function getPhysical(){
-        if(!tokens){
+    async function getPhysical() {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
+        try {
 
             const res = await axios.get(get_physical_arts_url)
             setArt(res.data)
@@ -115,19 +113,19 @@ export function useResource(){
             // .then(response =>{
             //     setArt(response.data)
             //     return response.data
-                
+
             // }).catch(error=>handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
     /////////////////////////photography fetch//////////////////
-    async function getPhotography(){
-        if(!tokens){
+    async function getPhotography() {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
+        try {
 
             const res = await axios.get(get_photography_url)
             return res.data
@@ -135,19 +133,19 @@ export function useResource(){
             // .then(response =>{
             //     setArt(response.data)
             //     return response.data
-                
+
             // }).catch(error=>handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
     //////////////////////// digital fetch ///////////////////
-    async function getDigitalArt(){
-        if(!tokens){
+    async function getDigitalArt() {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
+        try {
 
             const res = await axios.get(get_digital_art_url)
             return res.data
@@ -155,78 +153,78 @@ export function useResource(){
             // .then(response =>{
             //     setArt(response.data)
             //     return response.data
-                
+
             // }).catch(error=>handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
         // return data
     }
     ///////////////////////////////////////////////////////////
 
-    function getArtistArt(){
-        if(!tokens){
+    function getArtistArt() {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
-            axios.get(get_artist_art_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
-            .then(response =>{
-                // console.log(response)
-                setArtistArt(response.data)
-            
-            }).catch(error=>handleError(error))
+        try {
+            axios.get(get_artist_art_url, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+                    // console.log(response)
+                    setArtistArt(response.data)
+
+                }).catch(error => handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
 
-    function getsoldArtistArt(){
-        if(!tokens){
+    function getsoldArtistArt() {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
-            axios.get(get_sold_art_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
-            .then(response =>{
-                // console.log(response)
-                setsoldArtistArt(response.data)
-            
-            }).catch(error=>handleError(error))
+        try {
+            axios.get(get_sold_art_url, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+                    // console.log(response)
+                    setsoldArtistArt(response.data)
+
+                }).catch(error => handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
-    function getCusomerbid(){
-        if(!tokens){
+    function getCusomerbid() {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
-            axios.get(get_customer_bid_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
-            .then(response =>{
-                // console.log(response)
-                setcustomerBid(response.data)
-            
-            }).catch(error=>handleError(error))
+        try {
+            axios.get(get_customer_bid_url, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+                    // console.log(response)
+                    setcustomerBid(response.data)
+
+                }).catch(error => handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
-    function getWonBid(){
-        if(!tokens){
+    function getWonBid() {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
-            axios.get(get_win_bid_url,{headers:{Authorization: `Bearer ${tokens.access}`}})
-            .then(response =>{
-                // console.log(response)
-                setwinnerbid(response.data)
-            
-            }).catch(error=>handleError(error))
+        try {
+            axios.get(get_win_bid_url, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+                    // console.log(response)
+                    setwinnerbid(response.data)
+
+                }).catch(error => handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
@@ -236,30 +234,42 @@ export function useResource(){
         //     return "no tokens";
         // }
         try {
-            const updatePriceUrl = update_price_url+`${item.id}/`;
+            const updatePriceUrl = update_price_url + `${item.id}/`;
             axios.put(updatePriceUrl, { current_price: newPrice }, { headers: { Authorization: `Bearer ${tokens.access}` } })
                 .then(response => {
                     return response.data
                 })
                 .catch(error => handleError(error));
-        } catch(error) {
+        } catch (error) {
             console.log(error);
         }
+    }
+    function change_Status(itemId) {
+        try {
+          const updateStatus = new_status_url + `${itemId}/`;
+          axios.post(updateStatus)
+            .then(response => {
+              return response.data;
+            })
+            .catch(error => handleError(error));
+        } catch (error) {
+          console.log(error);
+        }
       }
-      function AddArt(obj){
-        if(!tokens){
+    function AddArt(obj) {
+        if (!tokens) {
             return "no tokens";
         }
-        try{
+        try {
             console.log(tokens)
-            axios.post(post_artist_art_url,obj,{headers:{Authorization: `Bearer ${tokens.access}`}})
-            .then(response =>{
-                // console.log(response)
-                return response.data
+            axios.post(post_artist_art_url, obj, { headers: { Authorization: `Bearer ${tokens.access}` } })
+                .then(response => {
+                    // console.log(response)
+                    return response.data
 
-            }).catch(error=>handleError(error))
+                }).catch(error => handleError(error))
         }
-        catch{
+        catch {
             console.log("Error: something went wrong")
         }
     }
@@ -298,19 +308,18 @@ export function useResource(){
     }  
     
 
-    return{
-
+return{
         getArts : art ,
         Inventory: inventory,
         physicalArts : physArt,
         phyloading: physArt && !physError,
-        digitalArt : digital,
+        digitalArt: digital,
         photography: photos,
         getArtsArtist: ArtistArt,
         getSoldArtistArt: soldArtistArt,
         CustomerBid: customerBid,
         WonBid: winnerbid,
-        loading : tokens && !error && !data ,
+        loading: tokens && !error && !data,
         updatePrice,
         AddArt,
         getArtResource,
@@ -320,5 +329,6 @@ export function useResource(){
         updateArtistArt,
         updateInventoryArt,
         getInventory,
+        change_Status,
     }
 }

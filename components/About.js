@@ -15,15 +15,15 @@ export default function Aboutus() {
                      
 
                         <div class="flex justify-center items-center h-screen px-20 absolute top-50 left-50 ">
-                           <div class=" bg-black bg-opacity-30 px-20 ">
+                           <div class=" bg-black bg-opacity-60 px-20 ">
 
 
-                                <h2 class="text-2xl font-bold text-white sm:text-3xl mt-5">
+                                <h2 class="text-4xl font-bold text-white sm:text-5xl mt-5">
                                     Creativity Overflow
                                 </h2>
 
 
-                                <p class="max-w-xl mt-3 text-white text-xl mb-5  ">
+                                <p class="max-w-xl mt-3 text-white text-2xl mb-5  ">
                                     Welcome to our vibrant online community! We are thrilled to
                                     have you here. Whether you're an aspiring enthusiast, a
                                     seasoned expert, or simply curious about our offerings, we

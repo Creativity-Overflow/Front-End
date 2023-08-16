@@ -55,7 +55,7 @@ function Footer() {
               <p className="flex flex-col justify-center items-center text-center  p-5bg-blue-400">
                 © 2022-2023 All rights reserved | Build with ❤ by{" "}
                 <span className="hover:text-blue-600 font-semibold cursor-pointer">
-                  Group-5{" "}
+                Overflow Crafters{" "}
                 </span>
               </p>
             </div>
