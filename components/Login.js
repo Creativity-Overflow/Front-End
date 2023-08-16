@@ -29,25 +29,7 @@ export default function loginIn() {
             }}
           >
             <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
-              <div>
-                <h2 className="text-2xl font-bold text-white sm:text-3xl">
-                  Creativity Overflow
-                </h2>
-
-                <p className="max-w-xl mt-3 text-gray-300">
-                  Welcome to the world of creativity and beauty! Our website is
-                  your perfect destination to explore art in all its forms and
-                  colors. We offer a diverse collection of unique artworks and
-                  paintings that embody the talents and skills of our talented
-                  artists, Whether you're looking for art pieces to decorate
-                  your home or a special gift for a loved one, we provide you
-                  with a wonderful array of options We look forward to helping
-                  you find pieces that cater to your refined taste and inspire
-                  you to continue your artistic journey, creating with
-                  brilliance. Thank you for your trust in us, and we are eager
-                  to serve you and enrich your life with the beauty of art."
-                </p>
-              </div>
+              
             </div>
           </div>
 

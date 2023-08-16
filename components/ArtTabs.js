@@ -19,9 +19,9 @@ export function ArtTabs() {
         setActiveTab(category);
     };
 
-    const physical = getArts.filter((item) => item.category === "physical_art");
-    const digital = getArts.filter((item) => item.category === "digital_art");
-    const photography = getArts.filter((item) => item.category === "photography");
+    const physical = getArts.filter((item) => item.category === "physical_art").slice(0, 6);
+    const digital = getArts.filter((item) => item.category === "digital_art").slice(0, 6);
+    const photography = getArts.filter((item) => item.category === "photography").slice(0,6);
 
     return (
         <Tabs value={activeTab}>

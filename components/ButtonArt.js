@@ -49,33 +49,31 @@ const ButtonArt = () => {
 
   const handleAddArt = async () => {
     // Perform validation on artData before adding
-   
-      if (selectedImage) {
-        const sasToken = "sp=racwdli&st=2023-08-15T16:25:59Z&se=2023-08-18T00:25:59Z&sv=2022-11-02&sr=c&sig=vDctGTXrq7uvQyvZ4AxEuALtDH6xs%2FOBpXCBSLy38Ms%3D";
-        try {
-          var url = await uploadImageToAzure(selectedImage, sasToken);
-          console.log(url);
-        } catch (error) {
-          console.error('Error uploading image:', error);
-        }
-        
-        setArtData({
-          ...artData,
-          image: url,
-        });
-      } else {
-        // Handle validation error
-        console.log("Please fill in all the fields");
-      }
-      if (
-        artData.name &&
-        artData.description &&
-        artData.category &&
-        artData.end_date &&
-        artData.image
-      )
 
-    {
+    if (selectedImage) {
+      const sasToken = "sp=racwdli&st=2023-08-15T16:25:59Z&se=2023-08-18T00:25:59Z&sv=2022-11-02&sr=c&sig=vDctGTXrq7uvQyvZ4AxEuALtDH6xs%2FOBpXCBSLy38Ms%3D";
+      try {
+        var url = await uploadImageToAzure(selectedImage, sasToken);
+        console.log(url);
+      } catch (error) {
+        console.error('Error uploading image:', error);
+      }
+
+      setArtData({
+        ...artData,
+        image: url,
+      });
+    } else {
+      // Handle validation error
+      console.log("Please fill in all the fields");
+    }
+    if (
+      artData.name &&
+      artData.description &&
+      artData.category &&
+      artData.end_date &&
+      artData.image
+    ) {
       AddArt(artData);
       console.log(artData); // Assuming addArt expects an object with artwork data
       setModalOpen(false); // Close the modal after adding
@@ -84,21 +82,21 @@ const ButtonArt = () => {
   };
 
   return (
-    <div>
+    <div className="flex justify-end items-end h-72 ">
       <button
         onClick={openModal}
-        className="p-2 text-2xl font-bold text-white bg-blue-500 rounded"
+        className="p-2 w-32 text-3xl font-bold absolute text-white bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"
       >
-        Open Modal
+        Add Art 
       </button>
 
       {isModalOpen && (
-        <div
+        <div 
           className="fixed inset-0 z-50 flex items-center justify-center w-full overflow-hidden main-modal h-100 animated fadeIn faster"
           style={{ background: "rgba(0,0,0,.7)" }}
         >
           <div className="z-50 w-11/12 mx-auto overflow-y-auto bg-white border border-teal-500 rounded shadow-lg modal-container md:max-w-md">
-            <div className="px-6 py-4 text-left modal-content">
+            <div className="px-6 py-4 text-left modal-content ">
               {/* ... (other modal content) ... */}
               <div class="py-8 text-base leading-6 space-y-4 text-black sm:text-lg sm:leading-7 bg-white">
                 <div class="flex flex-col">
@@ -194,7 +192,7 @@ const ButtonArt = () => {
                   />
                 </div> */}
               </div>
-              <div className="flex justify-end pt-2">
+              <div className="flex justify-end pt-2 ">
                 <button
                   onClick={modalClose}
                   className="p-3 px-4 text-black bg-gray-400 rounded-lg focus:outline-none modal-close hover:bg-gray-300"
@@ -203,7 +201,7 @@ const ButtonArt = () => {
                 </button>
                 <button
                   onClick={handleAddArt}
-                  className="p-3 px-4 ml-3 text-white bg-teal-500 rounded-lg focus:outline-none hover:bg-teal-400"
+                  className="p-3 px-4 ml-3 text-white bg-purple-500 rounded-lg focus:outline-none hover:bg-teal-400"
                 >
                   Confirm
                 </button>

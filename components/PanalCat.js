@@ -3,7 +3,7 @@ export default function PanalCat() {
 
         <section className=" dark:text-gray-100 " style={{
             alignItems: "center",
-            backgroundImage: "url(https://cdn.discordapp.com/attachments/1088176345957290005/1140950725908774982/art-removebg-preview.png)", "backgroundSize":"cover"
+            backgroundImage: "url(https://cdn.discordapp.com/attachments/1088176345957290005/1140950725908774982/art-removebg-preview.png)", "backgroundSize": "cover"
         }}>
             <div className="container   mx-auto">
                 <div className="grid items-center gap-4 xl:grid-cols-5">
@@ -14,32 +14,40 @@ export default function PanalCat() {
                     <div className="p-6 xl:col-span-3">
                         <div className="grid gap-4 md:grid-cols-2">
                             <div className="grid content-center gap-4">
-                                <div className="card m-2 rounded-lg shadow-lg" style={{ backgroundImage: `url('https://media.tenor.com/QtEfzowhyzEAAAAC/universe-galaxy.gif')`, backgroundSize: "cover" }}>
-                                    <div className="image" ></div>
-                                    <div className="content">
-                                        <h2 className="title">Mountain View</h2>
+                                <a href="/art">
+                                    <div className="card m-2 rounded-lg shadow-lg" style={{ backgroundImage: `url('https://mymodernmet.com/wp/wp-content/uploads/2017/03/paintings-merged-with-photography-1.jpg')`, backgroundSize: "cover" }}>
+                                        <div className="image" ></div>
+                                        <div className="content">
+                                            <h2 className="title">Photography</h2>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="card m-2 rounded-lg shadow-lg" style={{ backgroundImage: `url('https://media.tenor.com/QtEfzowhyzEAAAAC/universe-galaxy.gif')`, backgroundSize: "cover" }}>
-                                    <div className="image" ></div>
-                                    <div className="content">
-                                        <h2 className="title">Mountain View</h2>
+                                </a>
+                                <a href="/art">
+                                    <div className="card m-2 rounded-lg shadow-lg" style={{ backgroundImage: `url('https://static.miraheze.org/greatcharacterswiki/thumb/3/3d/Eren_Paths.jpg/640px-Eren_Paths.jpg')`, backgroundSize: "cover" }}>
+                                        <div className="image" ></div>
+                                        <div className="content">
+                                            <h2 className="title">Digital Art</h2>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                             <div className="grid content-center gap-32">
-                                <div className="card m-2  rounded-lg shadow-lg" style={{ backgroundImage: `url('https://media.tenor.com/QtEfzowhyzEAAAAC/universe-galaxy.gif')`, backgroundSize: "cover" }}>
-                                    <div className="image" ></div>
-                                    <div className="content">
-                                        <h2 className="title">Mountain View</h2>
+                                <a href="/art">
+                                    <div className="card m-2  rounded-lg shadow-lg" style={{ backgroundImage: `url('https://sep.turbifycdn.com/ty/cdn/madisonartshop/most-famous-paintings-1.jpg?t=1678352599&')`, backgroundSize: "cover" }}>
+                                        <div className="image" ></div>
+                                        <div className="content">
+                                            <h2 className="title">Phisical Art</h2>
+                                        </div>
                                     </div>
-                                </div>
-                                <div className="card m-2 rounded-lg shadow-lg" style={{ backgroundImage: `url('https://media.tenor.com/QtEfzowhyzEAAAAC/universe-galaxy.gif')`, backgroundSize: "cover" }}>
-                                    <div className="image" ></div>
-                                    <div className="content">
-                                        <h2 className="title">Mountain View</h2>
+                                </a>
+                                <a href="/art">
+                                    <div className="card m-2 rounded-lg shadow-lg" style={{ backgroundImage: `url('https://img.freepik.com/premium-photo/paint-splashes-against-white-backgroundvertical-shot-ai_372999-9200.jpg')`, backgroundSize: "cover" }}>
+                                        <div className="image" ></div>
+                                        <div className="content">
+                                            <h2 className="title">All Art</h2>
+                                        </div>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
                     </div>

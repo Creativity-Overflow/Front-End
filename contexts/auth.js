@@ -53,7 +53,8 @@ export function AuthProvider(props) {
           username: decoded.username,
           email: decoded.email,
           user_id: decoded.user_id,
-          image :decoded.image
+          image :decoded.image,
+          credits : decoded.credits
         };
         // console.log("newState"+newState.username)
         setState((prevState) => ({
@@ -62,7 +63,9 @@ export function AuthProvider(props) {
           username: decoded.username,
           email: decoded.email,
           user_id: decoded.user_id,
-          image :decoded.image
+          image :decoded.image,
+          credits : decoded.credits
+
 
         }));
       })
