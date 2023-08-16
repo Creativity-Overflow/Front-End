@@ -25,7 +25,7 @@ export default function loginIn() {
             className="hidden bg-cover lg:block lg:w-2/3"
             style={{
               "background-image":
-                "url(https://www.ryanseslow.com/wp-content/uploads/2018/05/IMB_5ACj1m.gif)",
+                "url(https://i.gifer.com/YDmM.gif)",
             }}
           >
             <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
