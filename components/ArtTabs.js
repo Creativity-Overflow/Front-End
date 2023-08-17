@@ -100,7 +100,7 @@ export function ArtTabs() {
                     <div className="slides-container  flex flex-wrap justify-center m-2 snap-x snap-mandatory overflow-hidden space-x-2 rounded scroll-smooth  " >
                         {physical.map((card, index) => (
                             <div key={index} className="slide aspect-square flex-shrink-0 snap-center rounded overflow-hidden relative">
-                                <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "350px" }}>
+                                <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "350px", margin: "20px" }}>
                                     <div className="image"></div>
                                     <div className="content ">
                                         <h2 className="title">{card.name}</h2>
@@ -133,7 +133,7 @@ export function ArtTabs() {
                     <div className="slides-container  flex flex-wrap justify-center m-2 snap-x snap-mandatory overflow-hidden space-x-2 rounded scroll-smooth  " >
                         {photography.map((card, index) => (
                             <div key={index} className="slide aspect-square flex-shrink-0 snap-center rounded overflow-hidden relative">
-                                <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "350px" }}>
+                                <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "350px", margin: "20px" }}>
                                     <div className="image"></div>
                                     <div className="content ">
                                         <h2 className="title">{card.name}</h2>

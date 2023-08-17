@@ -18,11 +18,11 @@ export default function PhysicalArts() {
   const [newart, setNewArt] = useState(undefined)
   const handleSubmit = async (item) => {
 
-    if(newPrice<item.current_price){
+    if (newPrice < item.current_price) {
       alert("your input price is lower than highest bid")
-      return 
+      return
     }
-    await updatePrice(item,newPrice)
+    await updatePrice(item, newPrice)
 
     modalClose();
     const x = await getPhysical()
@@ -60,61 +60,64 @@ export default function PhysicalArts() {
           ))}</>}
         {isModalOpen && (
           <div
-            className="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster mt-34"
+            className="main-modal fixed w-full h-100  inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster mt-34"
             style={{ background: "rgba(0,0,0,.7)" }}
           >
-            <div className="border border-teal-500 modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-              <div className="modal-content py-4 text-left px-6">
-                <div className="flex  justify-between items-center pb-3">
+            <div className="border border-teal-500 modal-container bg-white max-w-40rem mx-auto rounded shadow-lg z-50 overflow-y-auto">
+              <div className="modal-content py-4  px-6 flex">
+                <div className="w-1/2 pr-4">
                   <img
                     src={itemModel.image}
                     alt="Header Image"
                     className="h-50 w-50"
                   />
-
                 </div>
-
-                <div className="text-black">
-                  <div>
-                    <h2 className="title">Image Name:{"    "}{itemModel.name}</h2>
+                <div className="w-1/2 " style={{
+                  "align-content": "center",
+                  "display": "flex",
+                  "flex-direction": "column",
+                  "justify-content": "space-around"
+                }}>
+                  <div className="text-black gap-8">
+                    <div className="flex flex-col gap-10 items-center space-x-4 mb-4">
+                      <h2 className="title mb-4">Image Name: {itemModel.name}</h2>
+                      <h3 className="title mb-4">Category: {itemModel.category}</h3>
+                      <p className="mr-2">
+                        Current price: {itemModel.current_price}
+                      </p>
+                      <p className="mr-2">
+                        Highest Bidder: {itemModel.highest_bidder_name}
+                      </p>
+                      <input
+                        type="number"
+                        placeholder="Enter bid amount"
+                        value={newPrice}
+                        onChange={(e) => setNewPrice(e.target.value)}
+                        className="border px-2 py-1"
+                      />
+                    </div>
                   </div>
-                  {/* <div className="copy">
-                        <p>
-                        {itemModel.description}
-                        </p>
 
-                      </div> */}
-                  <div>
-                    <h3 className="title">Category:{"  "}{itemModel.category}</h3>
+                  <div className="flex justify-end pt-2">
+                    <button
+                      onClick={modalClose}
+                      className="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onClick={() => handleSubmit(itemModel)}
+                      className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400"
+                    >
+                      Update
+                    </button>
                   </div>
-                  <div>
-                    <p>{itemModel.highest_bidder_name}Current price{"   "}{itemModel.current_price}</p>
-                    <input
-                      type="number"
-                      placeholder="Enter bid amount"
-                      value={newPrice}
-                      onChange={(e) => setNewPrice(e.target.value)}
-                    // name="newprice"
-                    // onChange={()=>}
-                    />
-                  </div>
-                </div>
-                <div className="flex justify-end pt-2">
-                  <button
-                    onClick={modalClose}
-                    className="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
-                  >
-                    Cancel
-                  </button>
-                  <button onClick={() => handleSubmit(itemModel)} className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
-                    Update
-                  </button>
-
                 </div>
               </div>
             </div>
-          </div>
-        )}
+          </div >
+        )
+        }
       </div>
 
     </>

@@ -1,39 +1,53 @@
 import { useAuth } from "@/contexts/auth";
 import ButtonArt from "./ButtonArt";
 import { decode } from "jsonwebtoken";
+import { TfiEmail } from "react-icons/tfi";
+import { CgProfile } from "react-icons/cg";
+import { BiMoneyWithdraw } from "react-icons/bi";
 
-export default function ArtistProfile ()  {
-    const {username,email, image ,credits} = useAuth();
+export default function ArtistProfile() {
+  const { username, email, image, credits } = useAuth();
 
-    // const local = localStorage.getItem("authState") 
-    // const userData= decode(local.access)
-    return (
-      <>
-      <div className="flex justify-center items-center h-[screen]">
-      <div className="p-4 shadow-md rounded-3xl border border-[black] w-[80%] flex justify-center items-center h-[80%] mt-11" style={{ background: "rgba(0,0,0,.7)" }}>
-        <div className="flex items-center justify-around text-5xl"> 
+  // const local = localStorage.getItem("authState") 
+  // const userData= decode(local.access)
+  return (
+    <div className="max-w-screen p-8 sm:flex sm:space-x-6 bg-black bg-opacity-60 justify-center dark:text-gray-100">
+      <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
+        
+      </div>
+      <div className="flex flex-col space-y-4">
+        <div className="flex items-center justify-around text-3xl">
           <img
             src={image}
             alt="Profile"
             className="w-52 h-30 mr-48 "
-            style={{ width: '450px', height: '550px' }} 
+            style={{ width: '350px', height: '450px' }}
           />
-          <div className="mr-36">
-            <p className="text-white mr-52 mt-11">{username}</p>
+          <div className="">
+            <div className="flex items-center gap-8">
+              <CgProfile size={101} className="text-white" />
+              <p className="text-white mr-32 ">{username}</p>
+            </div>
             <br>
             </br>
             <br>
             </br>
-            <p className="text-white">{email}</p>
+            <div className="flex items-center gap-8">
+              <TfiEmail size={101} className="text-white" />
+              <p className="text-white">{email}</p>
+            </div>
             <br>
             </br>
-            <p className="text-white">{credits}</p>
+            <div className="flex items-center gap-8">
+              <BiMoneyWithdraw size={101} className="text-white" />
+              <p className="text-white">{credits}</p>
+            </div>
 
             <ButtonArt />
           </div>
-          </div>
         </div>
-        </div>
-        </>
-        );
+      </div>
+    </div>
+  );
 };
+

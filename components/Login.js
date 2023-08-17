@@ -20,7 +20,7 @@ export default function loginIn() {
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
-        <div className="flex justify-center h-screen">
+        <div className="flex justify-center">
           <div
             className="hidden bg-cover lg:block lg:w-2/3"
             style={{
