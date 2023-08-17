@@ -70,7 +70,7 @@ export default function SignUp() {
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
-        <div className="flex justify-center h-screen">
+        <div className="flex justify-center">
           <div
             className="hidden bg-cover lg:block lg:w-2/3"
             style={{
@@ -83,7 +83,7 @@ export default function SignUp() {
             </div>
           </div>
 
-          <div className="flex items-center w-full max-w-md px-6 mx-auto lg:w-2/6">
+          <div className="flex flex-col items-center justify-center w-full max-w-md px-4 mx-auto lg:w-2/3 xl:w-1/2">
             <div className="flex-1 my-5">
               <div className="text-center">
                 <div className="mt-4 text-sm text-center text-gray-400">

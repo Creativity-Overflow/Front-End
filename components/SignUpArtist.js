@@ -6,7 +6,7 @@ import uploadImageToAzure from "./uploadImageToAzureStorage";
 
 export default function SignUpArtist() {
   const [selectedImage, setSelectedImage] = useState(null);
-  const {signup_artist} = useAuth()
+  const { signup_artist } = useAuth()
   const [formData, setFormData] = useState({
     username: "",
     email: "",
@@ -30,7 +30,7 @@ export default function SignUpArtist() {
       [name]: value,
     }));
   };
-  
+
   const handleImageChange = (event) => {
     const file = event.target.files[0];
     setSelectedImage(file);
@@ -55,12 +55,12 @@ export default function SignUpArtist() {
         console.error('Error uploading image:', error);
       }
     }
-    const body=await {
-      username:event.target.username.value,
-      email:event.target.email.value,
-      password1:event.target.password1.value,
-      password2:event.target.password2.value,
-      image:url,
+    const body = await {
+      username: event.target.username.value,
+      email: event.target.email.value,
+      password1: event.target.password1.value,
+      password2: event.target.password2.value,
+      image: url,
     }
     console.log(body)
     const newFieldErrors = {};
@@ -70,7 +70,7 @@ export default function SignUpArtist() {
       }
     }
     setFieldErrors(newFieldErrors);
-    
+
     signup_artist(body)
     if (formData.password1 !== formData.password2) {
       alert("Passwords do not match.");
@@ -80,7 +80,7 @@ export default function SignUpArtist() {
   return (
     <>
       <div className="bg-white dark:bg-gray-900">
-        <div className="flex justify-center h-screen">
+        <div className="flex justify-center ">
           <div
             className="hidden bg-cover lg:block lg:w-2/3"
             style={{
@@ -89,7 +89,7 @@ export default function SignUpArtist() {
             }}
           >
             <div className="flex items-center h-full px-20 bg-gray-900 bg-opacity-40">
-              
+
             </div>
           </div>
 
@@ -105,7 +105,7 @@ export default function SignUpArtist() {
                   </Link>
                 </div>
                 <div className="flex justify-center mx-auto">
-                  <img className="w-auto h-7 sm:h-8" src="https://cdn.discordapp.com/attachments/1088176345957290005/1140939277220454491/image.png" alt="logo" />
+                  <img className="" src="https://cdn.discordapp.com/attachments/1088176345957290005/1140939277220454491/image.png" alt="logo" />
                 </div>
 
                 <p className="mt-3 text-gray-500 dark:text-gray-300">
@@ -127,15 +127,13 @@ export default function SignUpArtist() {
                       name="username"
                       id="username"
                       placeholder="Your Username"
-                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
-                        fieldErrors.username
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${fieldErrors.username
                           ? "border-red-500"
                           : "border-gray-200"
-                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
-                        fieldErrors.username
+                        } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${fieldErrors.username
                           ? "dark:border-red-500"
                           : "dark:border-gray-700"
-                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                        } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
                       value={formData.username}
                       onChange={handleInputChange}
                     />
@@ -156,11 +154,9 @@ export default function SignUpArtist() {
                       name="email"
                       id="email"
                       placeholder="example@example.com"
-                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
-                        fieldErrors.email ? "border-red-500" : "border-gray-200"
-                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
-                        fieldErrors.email ? "dark:border-red-500" : "dark:border-gray-700"
-                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${fieldErrors.email ? "border-red-500" : "border-gray-200"
+                        } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${fieldErrors.email ? "dark:border-red-500" : "dark:border-gray-700"
+                        } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
                       value={formData.email}
                       onChange={handleInputChange}
                     />
@@ -181,11 +177,9 @@ export default function SignUpArtist() {
                       name="password1"
                       id="password1"
                       placeholder="Your Password"
-                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
-                        fieldErrors.password1 ? "border-red-500" : "border-gray-200"
-                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
-                        fieldErrors.password1 ? "dark:border-red-500" : "dark:border-gray-700"
-                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${fieldErrors.password1 ? "border-red-500" : "border-gray-200"
+                        } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${fieldErrors.password1 ? "dark:border-red-500" : "dark:border-gray-700"
+                        } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
                       value={formData.password1}
                       onChange={handleInputChange}
                     />
@@ -206,11 +200,9 @@ export default function SignUpArtist() {
                       name="password2"
                       id="password2"
                       placeholder="Confirm Password"
-                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${
-                        fieldErrors.password2 ? "border-red-500" : "border-gray-200"
-                      } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${
-                        fieldErrors.password2 ? "dark:border-red-500" : "dark:border-gray-700"
-                      } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
+                      className={`block w-full px-4 py-2 mt-2 text-gray-700 placeholder-gray-400 bg-white border ${fieldErrors.password2 ? "border-red-500" : "border-gray-200"
+                        } rounded-lg dark:placeholder-gray-600 dark:bg-gray-900 dark:text-gray-300 ${fieldErrors.password2 ? "dark:border-red-500" : "dark:border-gray-700"
+                        } focus:border-blue-400 dark:focus:border-blue-400 focus:ring-blue-400 focus:outline-none focus:ring focus:ring-opacity-40`}
                       value={formData.password2}
                       onChange={handleInputChange}
                     />
@@ -241,6 +233,7 @@ export default function SignUpArtist() {
 
                   <div className="mt-6">
                     <button
+                      href="/login"
                       type="submit"
                       className="w-full px-4 py-2 tracking-wide text-white transition-colors duration-300 transform bg-blue-500 rounded-lg hover:bg-blue-400 focus:outline-none focus:bg-blue-400 focus:ring focus:ring-blue-300 focus:ring-opacity-50"
                     >

@@ -1,5 +1,6 @@
 
 
+import { GrAddCircle } from "react-icons/gr";
 
 import React, { useState } from "react";
 import { useResource } from "@/hooks/useResousrce";
@@ -82,11 +83,13 @@ const ButtonArt = () => {
   };
 
   return (
-    <div className="flex justify-end items-end h-72 ">
+    <div className="flex justify-end items-end h-24  ">
+      
       <button
         onClick={openModal}
-        className="p-2 w-32 text-3xl font-bold absolute text-white bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"
+        className="flex p-2 w-40 text-3xl font-bold absolute text-white bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"
       >
+      <GrAddCircle className="text-white" />
         Add Art 
       </button>
 
