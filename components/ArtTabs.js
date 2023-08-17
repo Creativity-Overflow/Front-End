@@ -19,9 +19,9 @@ export function ArtTabs() {
         setActiveTab(category);
     };
     if (loading) {return <>loading ... </>}
-    const physical = resource.filter((item) => item.category === "physical_art");
-    const digital = resource.filter((item) => item.category === "digital_art");
-    const photography = resource.filter((item) => item.category === "photography");
+    const physical = resource.filter((item) => item.category === "physical_art").slice(0,6);
+    const digital = resource.filter((item) => item.category === "digital_art").slice(0,6);
+    const photography = resource.filter((item) => item.category === "photography").slice(0,6);
 
     return (
         <Tabs value={activeTab}>
@@ -37,7 +37,7 @@ export function ArtTabs() {
                     onClick={() => handleTabClick("physical_art")}
                     className={activeTab === "physical_art" ? "text-gray-900" : ""}
                 >
-                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl  hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
+                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
                         <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20 bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
                         {/* <!-- Top glass gradient --> */}
                         <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
@@ -57,7 +57,7 @@ export function ArtTabs() {
                     onClick={() => handleTabClick("digital_art")}
                     className={activeTab === "digital_art" ? "text-gray-900" : ""}
                 >
-                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl  hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
+                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
                         <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20 bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
                         {/* <!-- Top glass gradient --> */}
                         <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
@@ -78,7 +78,7 @@ export function ArtTabs() {
                     className={activeTab === "photography" ? "text-gray-900" : ""}
                 >
 
-                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl  hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
+                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
                         <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20 bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
                         {/* <!-- Top glass gradient --> */}
                         <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
