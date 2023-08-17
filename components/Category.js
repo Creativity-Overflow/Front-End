@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import AllArts from "@/components/allArts";
 import Inventory from "./Inventory";
 import ArtistArt from "./ArtistArt";
-import soldArtistArt from "./SoldArtistArt";
+import SoldArtistArt from "./SoldArtistArt";
 import Customerbid from "./Customerbid";
 import WonBids from "./WonBids";
 
@@ -10,18 +10,18 @@ import WonBids from "./WonBids";
 const categories = ["Inventory", "ArtistArt", "Sold", "On going bid", "Winner"];
 
 const CategoryList = () => {
-  const [selectedCategory, setSelectedCategory] = useState("ArtistArt");
+  const [selectedCategory, setSelectedCategory] = useState("");
 
   const handleCategoryClick = (category) => {
     setSelectedCategory(category === selectedCategory ? null : category);
   };
 
   return (
-    <div className="flex flex-col gap-4 justify-center items-center mt-20">
+    <div className="flex flex-col items-center justify-center gap-4 mt-20">
       <div className="flex gap-5">
         {categories.map((category, index) => (
           <button key={index} className={`${selectedCategory === category}  relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group`} style={{ "width": "180px", "align-self": "center" }} onClick={() => handleCategoryClick(category)}>
-            <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20  bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
+            <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20 bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
             {/* <!-- Top glass gradient --> */}
             <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
             {/* <!-- Bottom gradient --> */}
@@ -38,7 +38,7 @@ const CategoryList = () => {
       </div>
       {selectedCategory === "Inventory" && <Inventory />}
       {selectedCategory === "ArtistArt" && <ArtistArt />}
-      {selectedCategory === "Sold" && <soldArtistArt />}
+      {selectedCategory === "Sold" && <SoldArtistArt />}
       {selectedCategory === "On going bid" && <Customerbid />}
       {selectedCategory === "Winner" && <WonBids />}
 

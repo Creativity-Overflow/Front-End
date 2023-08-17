@@ -1,9 +1,6 @@
-
-
 import { GrAddCircle } from "react-icons/gr";
-
 import React, { useState } from "react";
-import { useResource } from "@/hooks/useResousrce";
+import { useArtistArt } from "@/hooks/useArtistArt";
 import uploadImageToAzure from "./uploadImageToAzureStorage";
 
 const ButtonArt = () => {
@@ -33,7 +30,7 @@ const ButtonArt = () => {
     setModalOpen(true);
   };
 
-  const { AddArt } = useResource();
+  const { createArtistArtResource } = useArtistArt();
 
   const handleInputChange = (e) => {
     const { name, value } = e.target;
@@ -75,7 +72,7 @@ const ButtonArt = () => {
       artData.end_date &&
       artData.image
     ) {
-      AddArt(artData);
+      createArtistArtResource(artData);
       console.log(artData); // Assuming addArt expects an object with artwork data
       setModalOpen(false); // Close the modal after adding
       // You can update your UI state here to reflect the newly added artwork data
@@ -83,11 +80,11 @@ const ButtonArt = () => {
   };
 
   return (
-    <div className="flex justify-end items-end h-24  ">
+    <div className="flex items-end justify-end h-24 ">
       
       <button
         onClick={openModal}
-        className="flex p-2 w-40 text-3xl font-bold absolute text-white bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"
+        className="absolute flex w-40 p-2 text-3xl font-bold text-white bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"
       >
       <GrAddCircle className="text-white" />
         Add Art 

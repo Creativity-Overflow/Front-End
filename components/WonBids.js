@@ -1,10 +1,9 @@
-import { useResource } from "@/hooks/useResousrce";
+import { useWonBids } from "@/hooks/useWonBids";
 import React, { useState} from "react";
-
-// import Modal from "./Modal";
 export default function WonBids() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setitemModel] = useState({});
+  const { customerBids,loading } = useWonBids();
 
   const modalClose = () => {
     setModalOpen(false);
@@ -14,13 +13,13 @@ export default function WonBids() {
     setModalOpen(true);
     setitemModel(item);
   };
-  const { WonBid } = useResource();
+  if (loading){return <>Loading ...</>}
   return (
     <>
    
    <div className="flex flex-row flex-wrap justify-around w-full rounded">
-
-       {WonBid.map((card, index) => (
+   {customerBids.length<1?(<h2 className="self-center text-3xl">Empty</h2>):(<>
+       {customerBids.map((card, index) => (
 
         <div key={index} className="w-1/5 h-full m-2">
           <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%",width:"90%"}}>
@@ -42,12 +41,12 @@ export default function WonBids() {
       ))}
           {isModalOpen && (
             <div
-              className="main-modal fixed w-full h-100 inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster mt-34"
+              className="fixed inset-0 z-50 flex items-center justify-center w-full overflow-hidden main-modal h-100 animated fadeIn faster mt-34"
               style={{ background: "rgba(0,0,0,.7)" }}
             >
-              <div className="border border-teal-500 modal-container bg-white w-11/12 md:max-w-md mx-auto rounded shadow-lg z-50 overflow-y-auto">
-                <div className="modal-content py-4 text-left px-6">
-                  <div className="flex justify-between items-center pb-3">
+              <div className="z-50 w-11/12 mx-auto overflow-y-auto bg-white border border-teal-500 rounded shadow-lg modal-container md:max-w-md">
+                <div className="px-6 py-4 text-left modal-content">
+                  <div className="flex items-center justify-between pb-3">
                     <img
                       src={itemModel.image}
                       alt="Header Image"
@@ -69,24 +68,24 @@ export default function WonBids() {
                   <div className="flex justify-end pt-2">
                     <button
                       onClick={modalClose}
-                      className="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
+                      className="p-3 px-4 text-black bg-gray-400 rounded-lg focus:outline-none modal-close hover:bg-gray-300"
                     >
                       Cancel
                     </button>
-                    <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+                    <button className="p-3 px-4 ml-3 text-white bg-teal-500 rounded-lg focus:outline-none hover:bg-teal-400">
                       Confirm
                     </button>
-                    <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+                    <button className="p-3 px-4 ml-3 text-white bg-teal-500 rounded-lg focus:outline-none hover:bg-teal-400">
                       Update
                     </button>
-                    <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+                    <button className="p-3 px-4 ml-3 text-white bg-teal-500 rounded-lg focus:outline-none hover:bg-teal-400">
                       Delete
                     </button>
                   </div>
                 </div>
               </div>
             </div>
-          )}
+          )}</>)};
         </div> 
 
         
