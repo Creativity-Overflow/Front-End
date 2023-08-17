@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useResource } from "@/hooks/useResousrce"; // Make sure to import useResource
-import axios from "axios"; // Make sure to import axios
-
+import { useArtDetail } from "@/hooks/useArtDetail";
+import { useCredits } from "@/hooks/useUpdateCredits";
 export default function AllArts() {
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setItemModel] = useState(null);
@@ -9,7 +9,7 @@ export default function AllArts() {
   const [newPrice, setNewPrice] = useState("");
   const [newart, setNewArt] = useState(undefined);
   const [timerEnd, setTimerEnd] = useState(false); // Flag for timer end
-  const { updatePrice, getArtResource, change_Status, getArts } = useResource();
+  const { resource, loading, createResource, updateResource } = useResource();
 
   const modalClose = () => {
     setModalOpen(false);
@@ -19,13 +19,12 @@ export default function AllArts() {
     setModalOpen(true);
     setItemModel(item);
   };
-
+  const {updateArtDetail} = useArtDetail();
+  const {updateCredits} = useCredits()
   const handleSubmit = async (item) => {
-    await updatePrice(item, newPrice);
+    const info = {"current_price":newPrice}
+    await updateArtDetail(info, item.id);
     modalClose();
-    const x = await getArtResource();
-    setNewArt(x);
-    setMagic(!magic);
   };
 
   const calculateTimeLeft = (endDate) => {
@@ -49,7 +48,7 @@ export default function AllArts() {
 
   useEffect(() => {
     async function fetchData() {
-      getArts
+      resource
       // const x = await getArtResource();
       // setNewArt(x);
     }
@@ -69,7 +68,7 @@ export default function AllArts() {
         clearInterval(timerInterval); // Clean up the interval when component unmounts
       };
     }
-  }, [magic, setMagic, itemModel, change_Status, getArtResource]);
+  }, [magic, setMagic, itemModel]);
 
   useEffect(() => {
     if (timerEnd) {
@@ -81,10 +80,10 @@ export default function AllArts() {
   return (
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
-        {!getArts ? (
+        {loading ? (
           <h1>loading..</h1>
         ) : (
-          getArts.map((card, index) => (
+          resource.map((card, index) => (
             <div key={index} className="w-1/5 h-full m-2">
               <div
                 className="card"
@@ -123,11 +122,11 @@ export default function AllArts() {
       {/* Your modal code */}
       {isModalOpen && (
         <div
-          className="main-modal fixed w-full h-100  inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster mt-34"
+          className="fixed inset-0 z-50 flex items-center justify-center w-full overflow-hidden main-modal h-100 animated fadeIn faster mt-34"
           style={{ background: "rgba(0,0,0,.7)" }}
         >
-          <div className="border border-teal-500 modal-container bg-white max-w-40rem mx-auto rounded shadow-lg z-50 overflow-y-auto">
-            <div className="modal-content py-4  px-6 flex">
+          <div className="z-50 mx-auto overflow-y-auto bg-white border border-teal-500 rounded shadow-lg modal-container max-w-40rem">
+            <div className="flex px-6 py-4 modal-content">
               <div className="w-1/2 pr-4">
                 <img
                   src={itemModel.image}
@@ -141,10 +140,10 @@ export default function AllArts() {
                 "flex-direction": "column",
                 "justify-content": "space-around"
               }}>
-                <div className="text-black gap-8">
-                  <div className="flex flex-col gap-10 items-center space-x-4 mb-4">
-                  <h2 className="title mb-4">Image Name: {itemModel.name}</h2>
-                  <h3 className="title mb-4">Category: {itemModel.category}</h3>
+                <div className="gap-8 text-black">
+                  <div className="flex flex-col items-center gap-10 mb-4 space-x-4">
+                  <h2 className="mb-4 title">Image Name: {itemModel.name}</h2>
+                  <h3 className="mb-4 title">Category: {itemModel.category}</h3>
                     <p className="mr-2">
                       Current price: {itemModel.current_price}
                     </p>
@@ -156,7 +155,7 @@ export default function AllArts() {
                       placeholder="Enter bid amount"
                       value={newPrice}
                       onChange={(e) => setNewPrice(e.target.value)}
-                      className="border px-2 py-1"
+                      className="px-2 py-1 border"
                     />
                   </div>
                 </div>
@@ -164,13 +163,13 @@ export default function AllArts() {
                 <div className="flex justify-end pt-2">
                   <button
                     onClick={modalClose}
-                    className="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
+                    className="p-3 px-4 text-black bg-gray-400 rounded-lg focus:outline-none modal-close hover:bg-gray-300"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => handleSubmit(itemModel)}
-                    className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400"
+                    className="p-3 px-4 ml-3 text-white bg-teal-500 rounded-lg focus:outline-none hover:bg-teal-400"
                   >
                     Update
                   </button>

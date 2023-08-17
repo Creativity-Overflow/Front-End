@@ -1,4 +1,5 @@
-import { useResource } from "@/hooks/useResousrce";
+import { useDegitalArt } from "@/hooks/useDigitalArts";
+import { useCredits } from "@/hooks/useUpdateCredits";
 import React, { useState, useEffect } from "react";
 export default function DigitalArts() {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -14,35 +15,25 @@ export default function DigitalArts() {
     setModalOpen(true);
     setitemModel(item)
   };
-  const { updatePrice, getDigitalArt } = useResource();
-  const [newart, setNewArt] = useState(undefined)
+  const {digitalArt,loading,updateDigitalArt} = useDegitalArt();
+  const {updateCredits} = useCredits()
   const handleSubmit = async (item) => {
 
     if(newPrice<item.current_price){
       alert("your input price is lower than highest bid")
       return 
     }
-    await updatePrice(item,newPrice)
+    const info={"current_price":newPrice}
+    await updateDigitalArt(info,item.id)
 
     modalClose();
-    const x = await getDigitalArt()
-    setNewArt(x)
-    setMagic(!magic)
   };
-  useEffect(() => {
-    async function amjad() {
-      const x = await getDigitalArt()
-      setNewArt(x)
-    }
-    amjad()
-
-  }, [magic, setMagic])
 
   return (
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
-        {!newart ? <h1>loading..</h1> : <>
-          {newart.map((card, index) => (
+        {loading ? <h1>loading..</h1> : <>
+          {digitalArt.map((card, index) => (
             <div key={index} className="w-1/5 h-full m-2">
               <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "90%" }}>
                 <div className="image"></div>
@@ -61,11 +52,11 @@ export default function DigitalArts() {
           ))}</>}
         {isModalOpen && (
         <div
-          className="main-modal fixed w-full h-100  inset-0 z-50 overflow-hidden flex justify-center items-center animated fadeIn faster mt-34"
+          className="fixed inset-0 z-50 flex items-center justify-center w-full overflow-hidden main-modal h-100 animated fadeIn faster mt-34"
           style={{ background: "rgba(0,0,0,.7)" }}
         >
-          <div className="border border-teal-500 modal-container bg-white max-w-40rem mx-auto rounded shadow-lg z-50 overflow-y-auto">
-            <div className="modal-content py-4  px-6 flex">
+          <div className="z-50 mx-auto overflow-y-auto bg-white border border-teal-500 rounded shadow-lg modal-container max-w-40rem">
+            <div className="flex px-6 py-4 modal-content">
               <div className="w-1/2 pr-4">
                 <img
                   src={itemModel.image}
@@ -79,10 +70,10 @@ export default function DigitalArts() {
                 "flex-direction": "column",
                 "justify-content": "space-around"
               }}>
-                <div className="text-black gap-8">
-                  <div className="flex flex-col gap-10 items-center space-x-4 mb-4">
-                  <h2 className="title mb-4">Image Name: {itemModel.name}</h2>
-                  <h3 className="title mb-4">Category: {itemModel.category}</h3>
+                <div className="gap-8 text-black">
+                  <div className="flex flex-col items-center gap-10 mb-4 space-x-4">
+                  <h2 className="mb-4 title">Image Name: {itemModel.name}</h2>
+                  <h3 className="mb-4 title">Category: {itemModel.category}</h3>
                     <p className="mr-2">
                       Current price: {itemModel.current_price}
                     </p>
@@ -94,7 +85,7 @@ export default function DigitalArts() {
                       placeholder="Enter bid amount"
                       value={newPrice}
                       onChange={(e) => setNewPrice(e.target.value)}
-                      className="border px-2 py-1"
+                      className="px-2 py-1 border"
                     />
                   </div>
                 </div>
@@ -102,13 +93,13 @@ export default function DigitalArts() {
                 <div className="flex justify-end pt-2">
                   <button
                     onClick={modalClose}
-                    className="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
+                    className="p-3 px-4 text-black bg-gray-400 rounded-lg focus:outline-none modal-close hover:bg-gray-300"
                   >
                     Cancel
                   </button>
                   <button
                     onClick={() => handleSubmit(itemModel)}
-                    className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400"
+                    className="p-3 px-4 ml-3 text-white bg-teal-500 rounded-lg focus:outline-none hover:bg-teal-400"
                   >
                     Update
                   </button>

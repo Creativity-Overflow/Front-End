@@ -45,16 +45,17 @@ export function AuthProvider(props) {
       .post(baseUrl + "api/token/", body)
       .then((response) => {
         let token = response.data.access;
-        // console.log(token)
+        console.log("token: " +token)
         const decoded = jwt.decode(token);
+        localStorage.setItem("tokens",JSON.stringify(response.data))
+        localStorage.setItem("access",JSON.stringify(response.data.access))
+        localStorage.setItem("userData",JSON.stringify(decoded))
         // console.log(decoded)
         const newState = {
           tokens: response.data,
           username: decoded.username,
           email: decoded.email,
           user_id: decoded.user_id,
-          image :decoded.image,
-          credits : decoded.credits
         };
         // console.log("newState"+newState.username)
         setState((prevState) => ({
@@ -63,10 +64,6 @@ export function AuthProvider(props) {
           username: decoded.username,
           email: decoded.email,
           user_id: decoded.user_id,
-          image :decoded.image,
-          credits : decoded.credits
-
-
         }));
       })
       .catch((error) => {

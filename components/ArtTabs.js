@@ -13,20 +13,20 @@ export function ArtTabs() {
     const [activeTabIndex, setActiveTabIndex] = useState(0);
 
     const [activeTab, setActiveTab] = useState("digital_art");
-    const { getArts } = useResource()
+    const { resource,loading } = useResource()
 
     const handleTabClick = (category) => {
         setActiveTab(category);
     };
-
-    const physical = getArts.filter((item) => item.category === "physical_art").slice(0, 6);
-    const digital = getArts.filter((item) => item.category === "digital_art").slice(0, 6);
-    const photography = getArts.filter((item) => item.category === "photography").slice(0,6);
+    if (loading) {return <>loading ... </>}
+    const physical = resource.filter((item) => item.category === "physical_art");
+    const digital = resource.filter((item) => item.category === "digital_art");
+    const photography = resource.filter((item) => item.category === "photography");
 
     return (
         <Tabs value={activeTab}>
             <TabsHeader
-                className="rounded-none border-b border-blue-gray-50 bg-transparent p-0"
+                className="p-0 bg-transparent border-b rounded-none border-blue-gray-50"
                 indicatorProps={{
                     className:
                         "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
@@ -37,8 +37,8 @@ export function ArtTabs() {
                     onClick={() => handleTabClick("physical_art")}
                     className={activeTab === "physical_art" ? "text-gray-900" : ""}
                 >
-                    <a className=" relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group" style={{ "width": "180px", "align-self": "center" }}>
-                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20  bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
+                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl  hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
+                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20 bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
                         {/* <!-- Top glass gradient --> */}
                         <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
                         {/* <!-- Bottom gradient --> */}
@@ -57,8 +57,8 @@ export function ArtTabs() {
                     onClick={() => handleTabClick("digital_art")}
                     className={activeTab === "digital_art" ? "text-gray-900" : ""}
                 >
-                    <a className=" relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group" style={{ "width": "180px", "align-self": "center" }}>
-                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20  bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
+                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl  hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
+                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20 bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
                         {/* <!-- Top glass gradient --> */}
                         <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
                         {/* <!-- Bottom gradient --> */}
@@ -78,8 +78,8 @@ export function ArtTabs() {
                     className={activeTab === "photography" ? "text-gray-900" : ""}
                 >
 
-                    <a className=" relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold hover:text-white rounded-md shadow-2xl group" style={{ "width": "180px", "align-self": "center" }}>
-                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20  bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
+                    <a className="relative inline-flex items-center justify-center px-6 py-3 overflow-hidden font-bold rounded-md shadow-2xl  hover:text-white group" style={{ "width": "180px", "align-self": "center" }}>
+                        <span className="absolute inset-0 w-full h-full transition duration-300 ease-out opacity-20 bg-gradient-to-br from-pink-200 via-purple-700 to-blue-200 group-hover:opacity-100"></span>
                         {/* <!-- Top glass gradient --> */}
                         <span className="absolute top-0 left-0 w-full bg-gradient-to-b from-white to-transparent opacity-5 h-1/3"></span>
                         {/* <!-- Bottom gradient --> */}
@@ -97,9 +97,9 @@ export function ArtTabs() {
             </TabsHeader>
             <TabsBody>
                 <TabPanel value="physical_art">
-                    <div className="slides-container  flex flex-wrap justify-center m-2 snap-x snap-mandatory overflow-hidden space-x-2 rounded scroll-smooth  " >
+                    <div className="flex flex-wrap justify-center m-2 space-x-2 overflow-hidden rounded slides-container snap-x snap-mandatory scroll-smooth " >
                         {physical.map((card, index) => (
-                            <div key={index} className="slide aspect-square flex-shrink-0 snap-center rounded overflow-hidden relative">
+                            <div key={index} className="relative flex-shrink-0 overflow-hidden rounded slide aspect-square snap-center">
                                 <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "350px", margin: "20px" }}>
                                     <div className="image"></div>
                                     <div className="content ">
@@ -113,9 +113,9 @@ export function ArtTabs() {
                     </div>
                 </TabPanel>
                 <TabPanel value="digital_art">
-                    <div className="slides-container  flex flex-wrap justify-center m-2 snap-x snap-mandatory overflow-hidden space-x-2 rounded scroll-smooth  " >
+                    <div className="flex flex-wrap justify-center m-2 space-x-2 overflow-hidden rounded slides-container snap-x snap-mandatory scroll-smooth " >
                         {digital.map((card, index) => (
-                            <div key={index} className="slide aspect-square flex-shrink-0 snap-center rounded overflow-hidden relative">
+                            <div key={index} className="relative flex-shrink-0 overflow-hidden rounded slide aspect-square snap-center">
                                 <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "350px", margin: "20px" }}>
                                     <div className="image"></div>
                                     <div className="content ">
@@ -130,9 +130,9 @@ export function ArtTabs() {
                     </div>
                 </TabPanel>
                 <TabPanel value="photography">
-                    <div className="slides-container  flex flex-wrap justify-center m-2 snap-x snap-mandatory overflow-hidden space-x-2 rounded scroll-smooth  " >
+                    <div className="flex flex-wrap justify-center m-2 space-x-2 overflow-hidden rounded slides-container snap-x snap-mandatory scroll-smooth " >
                         {photography.map((card, index) => (
-                            <div key={index} className="slide aspect-square flex-shrink-0 snap-center rounded overflow-hidden relative">
+                            <div key={index} className="relative flex-shrink-0 overflow-hidden rounded slide aspect-square snap-center">
                                 <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "350px", margin: "20px" }}>
                                     <div className="image"></div>
                                     <div className="content ">
