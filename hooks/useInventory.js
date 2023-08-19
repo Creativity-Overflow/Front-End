@@ -42,7 +42,8 @@ export function useInventory(){
         }
         try {
             const tok = JSON.parse(access)
-            await axios.put(url+`${id}/`,info,{headers:{Authorization: `Bearer ${tok}`}})
+            console.log("update inv",tok)
+            await axios.put(`${url}${id}/`,info,{headers:{Authorization: `Bearer ${tok}`}})
             mutate(); //collect the data again
         }
         catch(err){

@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import { useResource } from "@/hooks/useResousrce"; // Make sure to import useResource
 import { useArtDetail } from "@/hooks/useArtDetail";
 import { useCredits } from "@/hooks/useUpdateCredits";
+import { useMoveRow } from "@/hooks/useMove";
 export default function AllArts() {
+  const {updateState} = useMoveRow()
   const [isModalOpen, setModalOpen] = useState(false);
   const [itemModel, setItemModel] = useState(null);
   const [magic, setMagic] = useState(true);
@@ -22,7 +24,7 @@ export default function AllArts() {
   const {updateArtDetail} = useArtDetail();
   const {updateCredits} = useCredits()
   const handleSubmit = async (item) => {
-    if (newPrice < item.current_price) {
+    if ( Number(newPrice) < Number(item.current_price)) {
       alert("Your input price is lower than the highest bid.");
       return;
     }
@@ -65,7 +67,7 @@ export default function AllArts() {
         const timeLeft = calculateTimeLeft(itemModel.end_date);
         if (timeLeft.total <= 0) {
           clearInterval(timerInterval); // Stop the interval when time is up
-          change_Status(itemModel.id); // Call change_Status function when time ends
+          updateState(itemModel.id); // Call change_Status function when time ends
           setTimerEnd(true); // Set timer end flag
         }
       }, 1000); // Update the timer every second

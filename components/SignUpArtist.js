@@ -3,8 +3,10 @@ import axios from "axios";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth";
 import uploadImageToAzure from "./uploadImageToAzureStorage";
+import { useRouter } from "next/router";
 
 export default function SignUpArtist() {
+  const router = useRouter()
   const [selectedImage, setSelectedImage] = useState(null);
   const { signup_artist } = useAuth()
   const [formData, setFormData] = useState({
@@ -70,11 +72,12 @@ export default function SignUpArtist() {
     }
     setFieldErrors(newFieldErrors);
 
-    signup_artist(body)
     if (formData.password1 !== formData.password2) {
       alert("Passwords do not match.");
       return;
     }
+    signup_artist(body)
+    router.push("/login");
   }
   return (
     <>

@@ -31,12 +31,12 @@ export function useArtistArt() {
     if (!tokens) {
       return;
     }
-
+    const tok = JSON.parse(access)
     try {
-      await createResource(info);
-      mutate(); // collect the data again
+        await axios.post(url,info,{headers:{Authorization: `Bearer ${tok}`}})
+        mutate(); // collect the data again
     } catch (err) {
-      handleError(err);
+      console.log("Error in Artist art")
     }
   }
 
@@ -44,9 +44,9 @@ export function useArtistArt() {
     if (!tokens) {
       return;
     }
-
+    const tok = JSON.parse(access)
     try {
-      await updateArtDetail(info, id);
+      await axios.put(url+`${id}/` ,info, {headers:{Authorization: `Bearer ${tok}`}} )
       mutate(); // collect the data again
     } catch (err) {
       console.log("error with updating art");

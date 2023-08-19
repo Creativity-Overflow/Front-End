@@ -29,11 +29,11 @@ const AddArtButton = () => {
               <div className="flex justify-end pt-2">
                 <button
                   onClick={modalClose}
-                  className="focus:outline-none modal-close px-4 bg-gray-400 p-3 rounded-lg text-black hover:bg-gray-300"
+                  className="p-3 px-4 text-black bg-gray-400 rounded-lg focus:outline-none modal-close hover:bg-gray-300"
                 >
                   Cancel
                 </button>
-                <button className="focus:outline-none px-4 bg-teal-500 p-3 ml-3 rounded-lg text-white hover:bg-teal-400">
+                <button className="p-3 px-4 ml-3 text-white bg-teal-500 rounded-lg focus:outline-none hover:bg-teal-400">
                   Confirm
                 </button>
               </div>
@@ -43,7 +43,7 @@ const AddArtButton = () => {
       </div>
       <button
         onClick={openModal}
-        className="bg-blue-500 text-white p-2 rounded text-2xl font-bold"
+        className="p-2 text-2xl font-bold text-white bg-blue-500 rounded"
       >
         Open Modal
       </button>
