@@ -47,9 +47,8 @@ export default function SignUpArtist() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (selectedImage) {
-      const sasToken = "sp=racwdli&st=2023-08-15T16:25:59Z&se=2023-08-18T00:25:59Z&sv=2022-11-02&sr=c&sig=vDctGTXrq7uvQyvZ4AxEuALtDH6xs%2FOBpXCBSLy38Ms%3D";
       try {
-        var url = await uploadImageToAzure(selectedImage, sasToken);
+        var url = await uploadImageToAzure(selectedImage);
         console.log(url);
       } catch (error) {
         console.error('Error uploading image:', error);
