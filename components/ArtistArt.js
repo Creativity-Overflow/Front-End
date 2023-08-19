@@ -17,7 +17,18 @@ export default function ArtistArt() {
 
 
   const handleSubmit = async (item) => {
-    await updateArtistArt(item, name, description, category)
+    const body = {
+      name: name,
+      description: description,
+      category: category,
+    };
+
+    await updateArtistArt(body, item.id);
+    setModalOpen(false);
+
+
+
+    // await updateArtistArt(item, name, description, category)
     // console.log(updateArtistArt)
     
   };

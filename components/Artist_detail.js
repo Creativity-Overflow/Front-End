@@ -7,6 +7,7 @@ import { BiMoneyWithdraw } from "react-icons/bi";
 
 export default function ArtistProfile() {
   const { username, email, image, credits } = useAuth();
+  
 
   // const local = localStorage.getItem("authState") 
   // const userData= decode(local.access)

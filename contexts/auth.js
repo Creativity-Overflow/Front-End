@@ -23,6 +23,7 @@ export function AuthProvider(props) {
     email: null,
     user_id: null,
     tokens: null,
+    image:null,
   };
 
   const [state, setState] = useState(initialClientState);
@@ -56,14 +57,18 @@ export function AuthProvider(props) {
           username: decoded.username,
           email: decoded.email,
           user_id: decoded.user_id,
+          image:decoded.image,
+
         };
         // console.log("newState"+newState.username)
+        console.log("Image URL:", decoded.image);
         setState((prevState) => ({
           ...prevState,
           tokens: response.data,
           username: decoded.username,
           email: decoded.email,
           user_id: decoded.user_id,
+          image:decoded.image,
         }));
       })
       .catch((error) => {
@@ -78,6 +83,7 @@ export function AuthProvider(props) {
       username: null,
       email: null,
       user_id: null,
+      image:null,
       
     }));
     localStorage.clear()

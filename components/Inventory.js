@@ -46,13 +46,6 @@ export default function Inventory() {
     await updateInventory(body, item.id);
     setModalOpen(false);
   };
-
-
-
-
-
-
-  // const { getInvontry } = useResource();
   return (
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">

@@ -6,8 +6,8 @@ export default function PhysicalArts() {
   const [itemModel, setitemModel] = useState({});
   const [magic, setMagic] = useState(true);
   const [newPrice, setNewPrice] = useState("");
-  const {updateCredits} =  useCredits();
-  const userData = localStorage.getItem('userData')
+  const { updateCredits } = useCredits();
+  const userData = localStorage.getItem("userData");
 
   const modalClose = () => {
     setModalOpen(false);
@@ -15,44 +15,62 @@ export default function PhysicalArts() {
 
   const openModal = (item) => {
     setModalOpen(true);
-    setitemModel(item)
+    setitemModel(item);
   };
-  const { loading, PhysicalArt,updatePhysicalArt } = usePhysicalArts();
-  const [newart, setNewArt] = useState(undefined)
+  const { loading, PhysicalArt, updatePhysicalArt } = usePhysicalArts();
+  const [newart, setNewArt] = useState(undefined);
   const handleSubmit = async (item) => {
-
     if (newPrice < item.current_price) {
       alert("Your input price is lower than the highest bid.");
       return;
     }
-    item.current_price = newPrice
-    await updatePhysicalArt(item,item.id)
-    var money = -newPrice
-    updateCredits(money,userData.user_id)
-    setModalOpen(false)
-  }
-  
+    item.current_price = newPrice;
+    await updatePhysicalArt(item, item.id);
+    var money = -newPrice;
+    updateCredits(money, userData.user_id);
+    setModalOpen(false);
+  };
+
   return (
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
-        {loading ? <h1>loading..</h1> : <>
-          {PhysicalArt.map((card, index) => (
-            <div key={index} className="w-1/5 h-full m-2">
-              <div className={"card"} style={{ backgroundImage: `url(${card.image})`, backgroundSize: "cover", height: "100%", width: "90%" }}>
-                <div className="image"></div>
-                <div className="content">
-                  <h2 className="title">{card.name}</h2>
+        {loading ? (
+          <div class="flex justify-center items-center h-screen">
+            <div class="relative w-24 h-24 animate-spin rounded-full bg-gradient-to-r from-purple-400 via-blue-500 to-red-400 ">
+              <div class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-20 h-20 bg-gray-200 rounded-full border-2 border-white"></div>
+            </div>
+          </div>
+        ) : (
+          <>
+            {PhysicalArt.map((card, index) => (
+              <div key={index} className="w-1/5 h-full m-2">
+                <div
+                  className={"card"}
+                  style={{
+                    backgroundImage: `url(${card.image})`,
+                    backgroundSize: "cover",
+                    height: "100%",
+                    width: "90%",
+                  }}
+                >
+                  <div className="image"></div>
+                  <div className="content">
+                    <h2 className="title">{card.name}</h2>
 
-                  <p>Status: {card.status}</p>
-                  <p>{card.highest_bidder_name}: {card.current_price}</p>
-                  <p>{card.artist_name}</p>
-                  <button className="btn" onClick={() => openModal(card)}>
-                    Place your bid
-                  </button>
+                    <p>Status: {card.status}</p>
+                    <p>
+                      {card.highest_bidder_name}: {card.current_price}
+                    </p>
+                    <p>{card.artist_name}</p>
+                    <button className="btn" onClick={() => openModal(card)}>
+                      Place your bid
+                    </button>
+                  </div>
                 </div>
               </div>
-            </div>
-          ))}</>}
+            ))}
+          </>
+        )}
         {isModalOpen && (
           <div
             className="fixed inset-0 z-50 flex items-center justify-center w-full overflow-hidden main-modal h-100 animated fadeIn faster mt-34"
@@ -67,16 +85,23 @@ export default function PhysicalArts() {
                     className="h-50 w-50"
                   />
                 </div>
-                <div className="w-1/2 " style={{
-                  "align-content": "center",
-                  "display": "flex",
-                  "flex-direction": "column",
-                  "justify-content": "space-around"
-                }}>
+                <div
+                  className="w-1/2 "
+                  style={{
+                    "align-content": "center",
+                    display: "flex",
+                    "flex-direction": "column",
+                    "justify-content": "space-around",
+                  }}
+                >
                   <div className="gap-8 text-black">
                     <div className="flex flex-col items-center gap-10 mb-4 space-x-4">
-                      <h2 className="mb-4 title">Image Name: {itemModel.name}</h2>
-                      <h3 className="mb-4 title">Category: {itemModel.category}</h3>
+                      <h2 className="mb-4 title">
+                        Image Name: {itemModel.name}
+                      </h2>
+                      <h3 className="mb-4 title">
+                        Category: {itemModel.category}
+                      </h3>
                       <p className="mr-2">
                         Current price: {itemModel.current_price}
                       </p>
@@ -110,11 +135,9 @@ export default function PhysicalArts() {
                 </div>
               </div>
             </div>
-          </div >
-        )
-        }
+          </div>
+        )}
       </div>
-
     </>
   );
 }
