@@ -22,10 +22,16 @@ export default function AllArts() {
   const {updateArtDetail} = useArtDetail();
   const {updateCredits} = useCredits()
   const handleSubmit = async (item) => {
-    const info = {"current_price":newPrice}
+    if (newPrice < item.current_price) {
+      alert("Your input price is lower than the highest bid.");
+      return;
+    }
+  
+    const info = { "current_price": newPrice };
     await updateArtDetail(info, item.id);
     modalClose();
   };
+  
 
   const calculateTimeLeft = (endDate) => {
     const now = new Date().getTime();

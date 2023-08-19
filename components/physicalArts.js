@@ -21,12 +21,9 @@ export default function PhysicalArts() {
   const [newart, setNewArt] = useState(undefined)
   const handleSubmit = async (item) => {
 
-    // if(newPrice<item.current_price){
-    //   alert("your input price is lower than highest bid")
-    //   return 
-    // }
-    if (item.current_price > 0){
-      updateCredits(item.current_price,item.highest_bidder)
+    if (newPrice < item.current_price) {
+      alert("Your input price is lower than the highest bid.");
+      return;
     }
     item.current_price = newPrice
     await updatePhysicalArt(item,item.id)

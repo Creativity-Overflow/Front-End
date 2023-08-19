@@ -20,17 +20,20 @@ export default function Photography() {
 
   const [newart, setNewArt] = useState(undefined)
   const handleSubmit = async (item) => {
-    console.log(item)
-    if (item.current_price > 0){
-      updateCredits(item.current_price,item.highest_bidder)
+    if (newPrice < item.current_price) {
+      alert("Your input price is lower than the highest bid.");
+      return;
     }
-    item.current_price = newPrice
-    await updatePhotography(item,item.id)
-    var money = -newPrice
-    updateCredits(money,userData.user_id)
-    setModalOpen(false)
+    
+    item.current_price = newPrice;
+    await updatePhotography(item, item.id);
+    
+    var money = -newPrice;
+    updateCredits(money, userData.user_id);
+    
+    setModalOpen(false);
   };
-
+  
   return (
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
