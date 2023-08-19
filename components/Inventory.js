@@ -27,9 +27,8 @@ export default function Inventory() {
   const handleSubmit = async (item) => {
     let url = "";
     if (image) {
-      const sasToken = "sp=racwdli&st=2023-08-15T16:25:59Z&se=2023-08-18T00:25:59Z&sv=2022-11-02&sr=c&sig=vDctGTXrq7uvQyvZ4AxEuALtDH6xs%2FOBpXCBSLy38Ms%3D";
       try {
-        url = await uploadImageToAzure(image, sasToken);
+        url = await uploadImageToAzure(image);
         console.log(url);
       } catch (error) {
         console.error('Error uploading image:', error);
