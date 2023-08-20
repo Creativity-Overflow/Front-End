@@ -43,7 +43,7 @@ export function useResource(){
         }
 
         try {
-            await axios.put(get_art_url+id,info,{headers:{Authorization: `Bearer ${tokens.access}`}})
+            await axios.put(`${get_art_url}${id}/`,info,{headers:{Authorization: `Bearer ${tokens.access}`}})
             mutate();
         }
         catch(err){

@@ -4,12 +4,12 @@ import { useResource } from "./useResousrce";
 import { useArtDetail } from "./useArtDetail";
 export function useMoveRow(){
     const getUrl = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/"
-    const updateUrl = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/move_row"
-    const {data,error,mutate} = useSWR([url],getRow)
+    const updateUrl = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/move_row/"
+    const {data,error,mutate} = useSWR([getUrl],getRow)
 
     async function getRow(id){
         try{
-            const res = await axios.get(getUrl+id+"/")
+            const res = await axios.get(`${getUrl}${id}/`)
             return res.data
         }
         catch{

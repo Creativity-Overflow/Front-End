@@ -11,6 +11,7 @@ export default function Inventory() {
   const [description, setDescription] = useState("");
   const [category, setNewCategory] = useState("");
   const [image, setImage] = useState("");
+  const parsed = JSON.parse(userData)
   const { data, loading, createInventoryElement, updateInventory } = useInventory();
 
 
@@ -34,22 +35,34 @@ export default function Inventory() {
         console.error('Error uploading image:', error);
       }
     }
+    if (url == "") {
+      const body = {
+        name: name,
+        description: description,
+        category: category,
+        artist: parsed.user_id,
+      };
 
-    const body = {
-      name: name,
-      description: description,
-      category: category,
-      image: url,
-      artist: userData.user_id,
-    };
+      await updateInventory(body, item.id);
+      setModalOpen(false);
+    }else{
+      const body = {
+              name: name,
+              description: description,
+              category: category,
+              image: url,
+              artist: parsed.user_id,
+            };
 
-    await updateInventory(body, item.id);
-    setModalOpen(false);
+            await updateInventory(body, item.id);
+            setModalOpen(false);
+    }
+      
   };
   return (
     <>
       <div className="flex flex-row flex-wrap justify-around w-full rounded">
-        {loading ? <h1>loading..</h1> : <>
+        {!data ? <h1>loading..</h1> : <>
 
           {data.map((card, index) => (
             <div key={index} className="w-1/5 h-full m-2">

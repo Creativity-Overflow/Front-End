@@ -93,14 +93,14 @@ function signup_customer(info) {
   console.log(info)
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   axios.post(`${baseUrl}accounts/signup/`,info)
-  .then((response)=>console.log(response.status))
+  .then((response)=> response.status)
 }
 /////////////////////////////sign up artist /////////////////
 function signup_artist(info) {
   console.log(info)
   const baseUrl = process.env.NEXT_PUBLIC_BASE_URL;
   axios.post(`${baseUrl}accounts/artist_signup/`,info)
-  .then((response)=>console.log(response.status))
+  .then((response)=> response.status)
 }
 
 

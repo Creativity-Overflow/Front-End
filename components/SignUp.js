@@ -3,8 +3,10 @@ import Link from "next/link";
 import axios from 'axios';
 import { useAuth } from "@/contexts/auth";
 import uploadImageToAzure from "./uploadImageToAzureStorage";
+import { useRouter } from "next/router";
 
 export default function SignUp() {
+  const router = useRouter()
   const {signup_customer}=useAuth()
   const [selectedImage, setSelectedImage] = useState(null);
   const [formData, setFormData] = useState({
@@ -63,7 +65,8 @@ export default function SignUp() {
       password2:event.target.password2.value,
       image:url,
     }
-    signup_customer(body)
+    await signup_customer(body)
+    router.push("/login");
   };
 
   return (

@@ -18,7 +18,7 @@ export default function DigitalArts() {
   const { digitalArt, loading, updateDigitalArt } = useDegitalArt();
   const { updateCredits } = useCredits();
   const handleSubmit = async (item) => {
-    if (newPrice < item.current_price) {
+    if ( Number(newPrice) < Number(item.current_price)) {
       alert("your input price is lower than highest bid");
       return;
     }

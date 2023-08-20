@@ -20,7 +20,7 @@ export default function PhysicalArts() {
   const { loading, PhysicalArt, updatePhysicalArt } = usePhysicalArts();
   const [newart, setNewArt] = useState(undefined);
   const handleSubmit = async (item) => {
-    if (newPrice < item.current_price) {
+    if ( Number(newPrice) < Number(item.current_price)) {
       alert("Your input price is lower than the highest bid.");
       return;
     }
