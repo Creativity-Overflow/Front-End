@@ -1,7 +1,5 @@
 export default async function uploadImageToAzure(imageFile) {
-  const AZURE_STORAGE_ACCOUNT_NAME = 'creativeart';
   const sasToken = "sp=racwdli&st=2023-08-19T14:52:41Z&se=2024-06-19T22:52:41Z&sv=2022-11-02&sr=c&sig=ZkYI2DvEoIG3EPRVMtWrn0tURlj8OoXLGexDodSBIQM%3D"
-  const CONTAINER_NAME = 'media';
   const uploadUrl = `https://creativeart.blob.core.windows.net/media/${imageFile.name}?${sasToken}`;
 
   try {
