@@ -1,6 +1,5 @@
 import { useAuth } from "@/contexts/auth";
 import ButtonArt from "./ButtonArt";
-import { decode } from "jsonwebtoken";
 import { TfiEmail } from "react-icons/tfi";
 import { CgProfile } from "react-icons/cg";
 import { BiMoneyWithdraw } from "react-icons/bi";
@@ -12,7 +11,7 @@ export default function ArtistProfile() {
   // const local = localStorage.getItem("authState") 
   // const userData= decode(local.access)
   return (
-    <div className="max-w-screen p-8 sm:flex sm:space-x-6 bg-black bg-opacity-60 justify-center dark:text-gray-100">
+    <div className="justify-center p-8 bg-black max-w-screen sm:flex sm:space-x-6 bg-opacity-60 dark:text-gray-100">
       <div className="flex-shrink-0 w-full mb-6 h-44 sm:h-32 sm:w-32 sm:mb-0">
         
       </div>
@@ -21,13 +20,13 @@ export default function ArtistProfile() {
           <img
             src={image}
             alt="Profile"
-            className="w-52 h-30 mr-48 "
+            className="mr-48 w-52 h-30 "
             style={{ width: '350px', height: '450px' }}
           />
           <div className="">
             <div className="flex items-center gap-8">
               <CgProfile size={101} className="text-white" />
-              <p className="text-white mr-32 ">{username}</p>
+              <p className="mr-32 text-white ">{username}</p>
             </div>
             <br>
             </br>

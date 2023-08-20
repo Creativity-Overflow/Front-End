@@ -1,6 +1,5 @@
 import { useState } from "react";
 import Link from "next/link";
-import axios from 'axios';
 import { useAuth } from "@/contexts/auth";
 import uploadImageToAzure from "./uploadImageToAzureStorage";
 import { useRouter } from "next/router";
@@ -32,15 +31,6 @@ export default function SignUp() {
       [name]: value,
     }));
   };
-
-  const handleImageUpload = (event) => {
-    const file = event.target.files[0];
-    setFormData((prevData) => ({
-      ...prevData,
-      profilePicture: file,
-    }));
-  };
-
 
   const handleImageChange = (event) => {
     const file = event.target.files[0];

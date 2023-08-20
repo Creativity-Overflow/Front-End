@@ -1,5 +1,4 @@
 import { useState } from "react";
-import axios from "axios";
 import Link from "next/link";
 import { useAuth } from "@/contexts/auth";
 import uploadImageToAzure from "./uploadImageToAzureStorage";
