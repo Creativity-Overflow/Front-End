@@ -25,8 +25,8 @@ export default function Photography() {
       return;
     }
 
-    await updatePhotography(item, item.id);
     item.current_price = newPrice;
+    await updatePhotography(item, item.id);
 
     var money = -newPrice;
     updateCredits(money, userData.user_id);

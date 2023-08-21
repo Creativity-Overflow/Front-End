@@ -19,10 +19,10 @@ export function useCredits() {
 
     async function updateCredits(money, id) {
         try {
-            const item = await getUserData(getUrl + `${id}/`); // Use getUserData function
-            console.log("bidder :" ,item)
+            const item = await getUserData(`${getUrl}${id}/`); // Use getUserData function
+            console.log("bidder :" ,JSON.parse(item))
             const credits = item.credits + money;
-            const res = await axios.put(url + `${item.user_id}/`, { 'credits': credits });
+            const res = await axios.put(`${url}${item.user_id}/`, { 'credits': credits });
             return res.data;
         } catch {
             console.log("Error: something went wrong with update credits");

@@ -6,8 +6,8 @@ export function usePhotography(){
     const url = process.env.NEXT_PUBLIC_BASE_URL + "api/v1/arts/photos/"
     const {data,error,mutate} = useSWR([url],getPhotography)
     const {createResource} = useResource()
-    const {updateArtDetail} =  useArtDetail()
     const tokens = localStorage.getItem('tokens')
+    const access = localStorage.getItem('access')
     async function getPhotography(){
         try{
             const res = await axios.get(url)
@@ -36,13 +36,13 @@ export function usePhotography(){
         if (!tokens) {
             return;
         }
-
+        const tok = JSON.parse(access)
         try {
-            await updateArtDetail(info,id)
+            await axios.put(`${url}${id}`,info,{headers:{Authorization: `Bearer ${tok}`}})
             mutate(); //collect the data again
         }
         catch(err){
-            handleError(err);
+            console.log("Error : error in updating photos");
         }
     }
     return{
